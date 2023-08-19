@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+     <LinearLayout
+         android:id="@+id/ly_item_chat_list"
+         android:layout_width="match_parent"
+         android:layout_height="90dp"
+         android:orientation="horizontal"
+         >
+         <ImageView
+             android:layout_width="100dp"
+             android:layout_height="100dp"
+             android:src="@drawable/google_green"
+             android:contentDescription="@string/chat"
+             />
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             android:layout_gravity="center"
+
+             >
+             <TextView
+                 android:layout_width="100dp"
+                 android:layout_height="match_parent"
+                 android:text="@string/sign_up"
+                 android:textColor="@color/black_lighter"
+                 android:textSize="25sp"
+                 android:textStyle="bold"
+
+                 />
+             <TextView
+                 android:layout_width="150dp"
+                 android:layout_height="match_parent"
+                 android:text="@string/sign_up"
+                 android:textColor="@color/grayTextColor2"
+
+                 />
+         </LinearLayout>
+         <FrameLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+             <TextView
+                 android:id="@+id/chat_item_list_data"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:text="@string/msg_time"
+                 android:textColor="@color/black_lighter"
+                 android:textSize="20sp"
+                 android:textStyle="bold"
+                 android:gravity="end|center"
+                 android:layout_marginEnd="10dp"
+                 android:layout_marginStart="10dp"
+                 />
+         </FrameLayout>
+
+     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/ly_item_chat_list"
+        android:background="@drawable/under_line"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        />
+
+</RelativeLayout>

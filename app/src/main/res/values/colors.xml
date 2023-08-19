@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#52B6BB</color>
+    <color name="purple_500">#52B6BB</color>
+    <color name="purple_700">#52B6BB</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="signTextColor">#52B6BB</color>
+    <color name="grayTextColor">#CDCDCD</color>
+    <color name="lighterSignTextColor">#9CD8DB</color>
+    <color name="light_black">#1D1C1C</color>
+    <color name="black_lighter">#3C3C3C</color>
+    <color name="grayTextColor2">#353535</color>
+</resources>

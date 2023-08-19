@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">testChatApp</string>
+    <string name="signIn">Sign In</string>
+    <string name="hint_email_box">Email Address</string>
+    <string name="hint_password_box">Password</string>
+    <string name="forgetPass">Forget Your Password</string>
+    <string name="rememberMe">Remember Me</string>
+    <string name="dont_have">Don"'"t have an account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="line">-</string>
+    <string name="or">OR</string>
+    <string name="example">abolfaz\nabbasi</string>
+    <string name="createe_account">Create your \n Account</string>
+    <string name="hint_name_box">Name</string>
+    <string name="dont_forget_password">Don"'"t forget your password</string>
+    <string name="sign_up_bar">Sign up</string>
+    <string name="chats">Chats</string>
+    <string name="chat2">Chat</string>
+
+    <string name="hint_search_box">Search</string>
+    <string name="msg_time">!2:35</string>
+    <string name="chat">chat</string>
+
+
+</resources>
