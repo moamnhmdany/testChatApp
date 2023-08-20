@@ -7,9 +7,7 @@
     <string name="rememberMe">Remember Me</string>
     <string name="dont_have">Don"'"t have an account</string>
     <string name="sign_up">Sign Up</string>
-    <string name="line">-</string>
     <string name="or">OR</string>
-    <string name="example">abolfaz\nabbasi</string>
     <string name="createe_account">Create your \n Account</string>
     <string name="hint_name_box">Name</string>
     <string name="dont_forget_password">Don"'"t forget your password</string>
@@ -18,8 +16,11 @@
     <string name="chat2">Chat</string>
 
     <string name="hint_search_box">Search</string>
-    <string name="msg_time">!2:35</string>
-    <string name="chat">chat</string>
+    <string name="btn_menu"> right menu</string>
+    <string name="back_btn">left back  for chat messenger</string>
+    <string name="pic_chat">picture chat of sender</string>
+    <string name="bton_send_content">send msg btn</string>
+    <string name="hint_msg_box">Type a  Message</string>
 
 
 </resources>

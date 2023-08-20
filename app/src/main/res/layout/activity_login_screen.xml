@@ -37,7 +37,7 @@
       android:layout_below="@id/SignTextView"
       android:layout_centerInParent="true"
       android:autofillHints="emailAddress"
-      android:background="@drawable/text_box_shap_bg"
+      android:background="@drawable/text_box_shap_bg_shap"
       android:hint="@string/hint_email_box"
       android:inputType="textEmailAddress"
       android:paddingStart="20sp"
@@ -54,7 +54,7 @@
       android:paddingEnd="20dp"
       android:inputType="textPassword"
       android:layout_marginTop="10dp"
-      android:background="@drawable/text_box_shap_bg"
+      android:background="@drawable/text_box_shap_bg_shap"
       android:layout_centerInParent="true"
       android:autofillHints="password"
       />
@@ -70,7 +70,6 @@
       >
 
     <RadioButton
-        android:id="@+id/rbtn_remember"
         android:layout_width="130sp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -78,7 +77,6 @@
         android:textColor="@color/grayTextColor" />
 
     <TextView
-        android:id="@+id/tv_forget"
         android:layout_width="150sp"
         android:layout_height="48dp"
         android:maxHeight="48dp"
@@ -89,7 +87,7 @@
         android:enabled="true"
         android:focusable="true"
         android:text="@string/forgetPass"
-        android:textColor="@drawable/forget_style" />
+        android:textColor="@drawable/forget_shap" />
   </LinearLayout>
 
   <Button
@@ -98,7 +96,7 @@
       android:layout_height="50dp"
       android:layout_below="@id/ly"
       android:layout_centerInParent="true"
-      android:background="@drawable/button_login_background"
+      android:background="@drawable/button_login_shap"
       android:clickable="true"
       android:enabled="true"
       android:focusable="true"
@@ -127,7 +125,7 @@
       android:enabled="true"
       android:focusable="true"
       android:text="@string/sign_up"
-      android:textColor="@drawable/sign_up_text"
+      android:textColor="@drawable/sign_up_text_shap"
       android:textSize="30sp" />
 
   <TextView
@@ -139,10 +137,9 @@
       android:text="@string/or"
       android:gravity="center"
       android:layout_centerInParent="true"
-      android:background="@drawable/image_line"
+      android:background="@drawable/image_line_shap"
       android:visibility="visible" />
   <LinearLayout
-      android:id="@+id/social_media_icons"
       android:layout_width="match_parent"
       android:layout_height="80dp"
       android:layout_below="@id/or_image"
@@ -151,7 +148,6 @@
       >
 
     <ImageView
-        android:id="@+id/twitter"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/twitter"
@@ -159,13 +155,11 @@
 
         />
     <ImageView
-        android:id="@+id/google"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/google_green"
         android:layout_margin="5dp"/>
     <ImageView
-        android:id="@+id/facebook"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/facebook_green"

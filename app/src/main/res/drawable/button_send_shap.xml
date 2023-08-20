@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:variablePadding="true"
+
+    >
+    <item android:state_pressed="false"
+
+        >
+        <shape
+
+            >
+            <padding android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp"
+                android:top="10dp"/>
+            <solid android:color="@color/signTextColor"/>
+            <size android:width="48dp" android:height="48dp"/>
+            <corners android:radius="25dp"/>
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/lighterSignTextColor"/>
+            <size android:width="48dp" android:height="48dp"/>
+            <corners android:radius="25dp"/>
+            <padding android:bottom="10dp"
+                android:left="10dp"
+                android:right="10dp"
+                android:top="10dp"/>
+        </shape>
+    </item>
+
+</selector>

@@ -36,7 +36,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
 
-                    android:layout_gravity="start"
                     android:src="@drawable/google_green" />
 
                 <TextView
@@ -63,9 +62,9 @@
                     android:id="@+id/btn_add_friend"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/add_friend_button_style"
+                    android:background="@drawable/add_friend_button_shap"
                     android:contentDescription="@string/chat2"
-                    android:src="@drawable/add_chats_friend"
+                    android:src="@drawable/add_chats_friend_icon"
                     android:layout_gravity="end"
                     android:layout_marginEnd="10dp"
 
@@ -85,7 +84,7 @@
             android:layout_marginTop="10dp"
             android:paddingStart="20sp"
             android:paddingEnd="20dp"
-            android:background="@drawable/text_box_shap_bg"
+            android:background="@drawable/text_box_shap_bg_shap"
             android:autofillHints="password" />
 
         <androidx.recyclerview.widget.RecyclerView
