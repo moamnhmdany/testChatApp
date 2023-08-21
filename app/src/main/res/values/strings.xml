@@ -19,7 +19,7 @@
     <string name="btn_menu"> right menu</string>
     <string name="back_btn">left back  for chat messenger</string>
     <string name="pic_chat">picture chat of sender</string>
-    <string name="bton_send_content">send msg btn</string>
+    <string name="btn_send_content">send msg btn</string>
     <string name="hint_msg_box">Type a  Message</string>
 
 
