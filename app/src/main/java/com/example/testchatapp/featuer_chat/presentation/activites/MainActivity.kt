@@ -1,10 +1,9 @@
-package com.example.testchatapp
+package com.example.testchatapp.featuer_chat.presentation.activites
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.testchatapp.R
 import com.google.firebase.auth.FirebaseAuth
-import com.example.testchatapp.databinding.ActivityMainBinding
-import com.example.testchatapp.databinding.ActivityUsersChatListBinding.inflate
 
 
 class MainActivity : AppCompatActivity() {

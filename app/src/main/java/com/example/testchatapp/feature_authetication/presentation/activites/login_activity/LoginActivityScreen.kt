@@ -1,16 +1,25 @@
-package com.example.testchatapp.pages
+package com.example.testchatapp.feature_authetication.presentation.activites.login_activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.WindowCompat
-import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding
+import com.example.testchatapp.databinding.ActivityLoginScreenBinding.inflate
+
 class LoginActivityScreen : AppCompatActivity() {
+    private  lateinit var binding: ActivityLoginScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_screen)
+
+        extracted()
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+    }
+
+    private fun extracted() {
+        binding = inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
     }
 }

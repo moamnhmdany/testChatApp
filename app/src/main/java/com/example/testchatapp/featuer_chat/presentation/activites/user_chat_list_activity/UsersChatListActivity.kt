@@ -1,9 +1,8 @@
-package com.example.testchatapp.pages
+package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.WindowCompat
-import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding.inflate
 

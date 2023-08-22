@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        tools:context=".pages.UsersChatListActivity">
+        tools:context=".featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity">
 
         <LinearLayout
             android:id="@+id/top_bar_chat_list"
