@@ -20,23 +20,29 @@
             android:windowSoftInputMode="adjustPan"
             >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity"
             android:exported="true"
-            android:theme="@style/Theme.TestChatApp.noActionCustomBar">
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar"
+            android:windowSoftInputMode="adjustPan"
+
+            >
 
         </activity>
         <activity
             android:name=".feature_authetication.presentation.activites.sign_up_activity.SignUpActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar"
+            android:windowSoftInputMode="adjustPan"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".feature_authetication.presentation.activites.login_activity.LoginActivityScreen"
