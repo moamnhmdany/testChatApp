@@ -1,10 +1,11 @@
 package com.example.testchatapp.feature_authetication.domain.Repository
 
+import android.content.Context
 import com.example.testchatapp.feature_authetication.domain.model.Users
 
 interface Chat_Repository {
 
-    fun createNewUserWithEmail( user: Users)
+    suspend fun createNewUserWithEmail(user: Users, context: Context)
     fun loginWithGoogle(user:Users)
     fun loginWithTwitter(user:Users)
     fun lginWithFacebook(user: Users)

@@ -23,4 +23,7 @@
             true
         </item>
     </style>
+    <style name="Theme.TestChatApp.WhiteAccent">
+        <item name="colorAccent">@color/signTextColor</item> <!-- Whatever color you want-->
+    </style>
 </resources>

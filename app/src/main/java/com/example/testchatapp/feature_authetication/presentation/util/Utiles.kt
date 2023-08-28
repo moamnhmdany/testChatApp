@@ -2,6 +2,7 @@ package com.example.testchatapp.feature_authetication.presentation.util
 import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.core.view.WindowCompat
 import com.example.testchatapp.databinding.ActivitySignUpBinding
 import com.example.testchatapp.databinding.ActivitySignUpBinding.inflate
@@ -17,6 +18,7 @@ class Utiles() {
         val li = LayoutInflater.from(context)
         binding = inflate(li)
         val view = binding.root
+
         activity.setContentView(view)
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
        return binding
@@ -28,6 +30,9 @@ class Utiles() {
         activity.setContentView(view)
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
 
+    }
+    fun makeToast(context:Context , msg:String){
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
     }
 
 }

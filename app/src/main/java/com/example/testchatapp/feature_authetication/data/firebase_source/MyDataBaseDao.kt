@@ -1,10 +1,10 @@
 package com.example.testchatapp.feature_authetication.data.firebase_source
 
+import android.content.Context
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import com.google.firebase.auth.FirebaseAuth
 
-interface FireBaseDao {
+interface MyDataBaseDao{
 
 
-      fun createUserWithEmailAndPassword(users: Users)
+     suspend fun createUserWithEmailAndPassword(user: Users,context: Context)
 }
