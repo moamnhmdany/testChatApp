@@ -1,17 +1,16 @@
 package com.example.testchatapp.feature_authetication.data.repository
 
 import android.content.Context
-import com.example.testchatapp.feature_authetication.data.firebase_source.MyDataBaseDao
 import com.example.testchatapp.feature_authetication.data.firebase_source.FireeBase
-import com.example.testchatapp.feature_authetication.domain.Repository.Chat_Repository
+import com.example.testchatapp.feature_authetication.data.firebase_source.MyDataBaseDao
+import com.example.testchatapp.feature_authetication.domain.Repository.Auth_Repository
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 
-class Chat_Repository_Impl() :Chat_Repository{
+class ChatRepositoryImpl :Auth_Repository{
 
-      val myDataBaseDao : MyDataBaseDao = FireeBase()
+      private val myDataBaseDao : MyDataBaseDao = FireeBase()
     override suspend fun createNewUserWithEmail(user: Users,context: Context) {
 
              myDataBaseDao.createUserWithEmailAndPassword(user,context)
@@ -20,7 +19,6 @@ class Chat_Repository_Impl() :Chat_Repository{
     }
 
     override fun loginWithGoogle(user: Users) {
-        TODO("Not yet implemented")
     }
 
     override fun loginWithTwitter(user: Users) {
@@ -31,9 +29,10 @@ class Chat_Repository_Impl() :Chat_Repository{
         TODO("Not yet implemented")
     }
 
-    override fun loginWithEmail(user: Users) {
-        TODO("Not yet implemented")
+    override suspend fun loginWithEmail(user: Users, context: Context):Task<AuthResult> {
+      return  myDataBaseDao.loginWithEmailFireBase(user,context)
     }
+
 
     override fun getUsers(): ArrayList<Users> {
         TODO("Not yet implemented")

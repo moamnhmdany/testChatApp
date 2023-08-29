@@ -6,20 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import com.example.testchatapp.feature_authetication.domain.use_case.UseCase_RegisterUser
+import com.example.testchatapp.feature_authetication.domain.use_case.UseCaseRegisterUser
 import kotlinx.coroutines.launch
 
-class ViewModelSignUp() : ViewModel() {
+class ViewModelSignUp : ViewModel() {
 
-       val usersList = ArrayList<Users>()
-       val usersLiveData =  MutableLiveData<ArrayList<Users> >()
+       private val usersList = ArrayList<Users>()
+       private val usersLiveData =  MutableLiveData<ArrayList<Users> >()
       fun createUser(user:Users,context: Context){
           usersList.add(user)
 
           usersLiveData.value= usersList
          viewModelScope.launch {
 
-             UseCase_RegisterUser().createUser(user,context)
+             UseCaseRegisterUser().createUser(user,context)
          }
 
 

@@ -21,6 +21,8 @@
     <string name="pic_chat">picture chat of sender</string>
     <string name="btn_send_content">send msg btn</string>
     <string name="hint_msg_box">Type a  Message</string>
+    <string name="defualt_name">Defualt name</string>
+    <string name="last_msg">Last Masseage</string>
 
 
 </resources>
