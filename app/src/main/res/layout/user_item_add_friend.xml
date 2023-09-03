@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+
+    </data>
+
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image_add_friend"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:padding="10dp"
+                    android:src="@drawable/person_icon"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/signTextColor"
+                    android:layout_gravity="top"
+                    />
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/user_name"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:layout_toRightOf="@id/profile_image_add_friend"
+                    />
+
+              <de.hdodenhof.circleimageview.CircleImageView
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:id="@+id/image_add_friend"
+                  android:layout_width="96dp"
+                  android:layout_height="96dp"
+                  android:padding="10dp"
+                  android:src="@drawable/add"
+                  app:civ_border_width="2dp"
+                  app:civ_border_color="@color/signTextColor"
+                  android:clickable="true"
+                  android:focusable="true"
+                  android:layout_gravity="end"
+                  android:contentDescription="@string/add_friend_msg"
+                  android:layout_alignParentEnd="true"
+                  />
+          </RelativeLayout>
+
+</layout>

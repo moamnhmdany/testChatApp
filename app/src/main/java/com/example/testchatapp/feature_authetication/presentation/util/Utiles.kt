@@ -7,14 +7,19 @@ import com.example.testchatapp.databinding.ActivitySignUpBinding
 import com.example.testchatapp.databinding.ActivitySignUpBinding.inflate
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
+import com.example.testchatapp.databinding.ActivityUsersListAddBinding
+
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding.inflate as inflateUsers
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding.inflate as inflateLogin
+import com.example.testchatapp.databinding.ActivityUsersListAddBinding.inflate as inflateListAddFriend
+
 
 
 class Utiles() {
     private  lateinit var binding: ActivitySignUpBinding
     private  lateinit var bindingLogin: ActivityLoginScreenBinding
     private  lateinit var bindingUsersList: ActivityUsersChatListBinding
+    private  lateinit var bindingUsersListAdd: ActivityUsersListAddBinding
 
 
     fun settingSignUp(context :Context,activity: Activity): ActivitySignUpBinding {
@@ -42,5 +47,13 @@ class Utiles() {
         activity.setContentView(view)
         WindowCompat.setDecorFitsSystemWindows(activity.window, false)
         return  bindingUsersList
+    }
+    fun settingUserListAddFriend(context :Context,activity: Activity):ActivityUsersListAddBinding{
+        val li = LayoutInflater.from(context)
+        bindingUsersListAdd = inflateListAddFriend(li)
+        val view = bindingUsersListAdd.root
+        activity.setContentView(view)
+        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+        return  bindingUsersListAdd
     }
 }

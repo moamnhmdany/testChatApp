@@ -23,6 +23,8 @@
     <string name="hint_msg_box">Type a  Message</string>
     <string name="defualt_name">Defualt name</string>
     <string name="last_msg">Last Masseage</string>
+    <string name="user_name">Moamn Programmer</string>
+    <string name="add_friend_msg">add friend to chat</string>
 
 
 </resources>

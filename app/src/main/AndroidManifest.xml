@@ -2,12 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application
         android:name=".feature_authetication.presentation.BaseApp"
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,34 +13,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestChatApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar"
+            />
         <activity
             android:name=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerPage"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"
-            >
-
-
-        </activity>
-
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"
-
-            >
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".feature_authetication.presentation.activites.sign_up_activity.SignUpActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"
-            >
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".feature_authetication.presentation.activites.login_activity.LoginActivity"
             android:exported="true"
@@ -59,5 +47,9 @@
             android:name=".featuer_chat.presentation.activites.MainActivity"
             android:exported="true" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

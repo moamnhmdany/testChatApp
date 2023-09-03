@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity">
+       <LinearLayout
+           android:id="@+id/top_friend_bar"
+           android:layout_width="match_parent"
+           android:layout_height="60dp"
+           android:orientation="vertical"
+           android:padding="10dp"
+           android:layout_marginTop="10dp"
+           android:layoutDirection="ltr"
+           >
+           <Button
+               android:id="@+id/btn_add_friend_back"
+               android:layout_width="48dp"
+               android:layout_height="wrap_content"
+               android:layout_gravity="start"
+               android:background="@drawable/arrow_back_shap"
+               android:contentDescription="@string/default_web_client_id" />
+       </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/users_add_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_friend_bar"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layoutDirection="ltr"
+            />
+        <ProgressBar
+            android:id="@+id/users_list_add_progress_bar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:theme="@style/Theme.TestChatApp.WhiteAccent"
+            />
+    </RelativeLayout>
+</layout>
