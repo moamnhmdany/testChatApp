@@ -1,5 +1,6 @@
 package com.example.testchatapp.featuer_chat.domain.use_case
 
+import androidx.lifecycle.MutableLiveData
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.databinding.ActivityUsersListAddBinding
 import com.example.testchatapp.featuer_chat.data.repository.RepositoryImpl
@@ -18,8 +19,8 @@ import com.google.firebase.ktx.Firebase
 class UseCaseGetAllUsers {
 
     private var repo: ChatRepository = RepositoryImpl()
-    suspend fun getAllUsers(users: ArrayList<Users>): ArrayList<Users> {
-        return repo.getAllUsers(users)
+    suspend fun getAllUsers(){
+         repo.getAllUsers()
 
     }
 
@@ -39,7 +40,7 @@ class UseCaseGetAllUsers {
                     dataSnapshot.child("Users").children.forEach {
                         val user = it.getValue(Users::class.java)
                          if(!check(user!!))
-                        UtilsReference.mutableUsersList.value!!.add(user!!)
+                        UtilsReference.mutableUsersList.value!!.add(user)
                         UtilsReference.addFriendListAdapter.notifyDataSetChanged()
                     }
                     AddFriendListener.hideProgrecceBar(ui)
@@ -59,7 +60,7 @@ class UseCaseGetAllUsers {
        }
         private fun getDataBaseRefAndCleanList() {
             database = Firebase.database.reference
-            UtilsReference.list.clear()
+            UtilsReference.mutableUsersList.value!!.clear()
         }
         fun updateUserList( ui: ActivityUsersChatListBinding) {
             getDataBaseRefAndCleanList()

@@ -1,5 +1,6 @@
 package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
@@ -10,18 +11,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ViewModelUsersList :ViewModel(){
-    private val   mutableUsersListModel = UtilsReference.mutableUsersList
     private val getCase =  UseCaseGetAllUsers()
      fun update(ui:ActivityUsersChatListBinding){
          UseCaseGetAllUsers.updateUserList(ui)
      }
 
-     fun getUsers(users: ArrayList<Users>){
+     fun getUsers(){
 
         viewModelScope.launch (Dispatchers.IO){
-           getCase.getAllUsers(users)
+           getCase.getAllUsers()
         }
-         mutableUsersListModel.value = users
+
 
      }
 }

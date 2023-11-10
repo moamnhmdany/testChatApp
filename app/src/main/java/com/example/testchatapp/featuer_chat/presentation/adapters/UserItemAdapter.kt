@@ -2,6 +2,7 @@ package com.example.testchatapp.featuer_chat.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.databinding.UserItemListBinding
 import com.example.testchatapp.databinding.UserItemListBinding.inflate
@@ -9,7 +10,7 @@ import com.example.testchatapp.feature_authetication.domain.model.Users
 
 
 class UserItemAdapter() : RecyclerView.Adapter<UserItemAdapter.ViewHolder>() {
-    lateinit var userList: ArrayList<Users>
+    lateinit var userList: MutableLiveData<ArrayList<Users>>
 
     inner class ViewHolder(val ItemView: UserItemListBinding) :
         RecyclerView.ViewHolder(ItemView.root) {
@@ -25,13 +26,13 @@ class UserItemAdapter() : RecyclerView.Adapter<UserItemAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return userList.value!!.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         with(holder) {
-            with(userList[position]) {
+            with(userList.value!![position]) {
                 ItemView.userName.text = userName
 
             }

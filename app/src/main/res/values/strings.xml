@@ -25,6 +25,10 @@
     <string name="last_msg">Last Masseage</string>
     <string name="user_name">Moamn Programmer</string>
     <string name="add_friend_msg">add friend to chat</string>
+    <string name="msg_recived">message reciver</string>
+    <string name="msg_time">12:33 pm</string>
+    <string name="sender_text">Sended message</string>
+    <string name="msg_time_sender">09:33 am</string>
 
 
 </resources>

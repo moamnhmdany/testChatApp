@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
@@ -63,10 +64,9 @@ class LoginActionsListener {
     }
 
     private fun getUser(email: String, password: String): Users {
-        val user = UserOpareations.newUser()
+        val user = UtilsReference.user
         user.email = email
         user.password = password
-
         return user
     }
 

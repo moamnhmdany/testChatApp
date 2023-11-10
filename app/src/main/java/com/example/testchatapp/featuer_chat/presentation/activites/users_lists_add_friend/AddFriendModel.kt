@@ -12,15 +12,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AddFriendModel : ViewModel() {
-      private val userList = UtilsReference.mutableUsersList
+      private lateinit var userList : MutableLiveData<ArrayList<Users>>
       private val getCase = UseCaseGetAllUsers()
-       fun update( ui: ActivityUsersListAddBinding){
-           UseCaseGetAllUsers.updateAddFriend(ui)
-      }
-     fun getUsers(users:ArrayList<Users>){
+
+
+    fun getUsersDataBase(){
         viewModelScope.launch(Dispatchers.IO) {
-            getCase.getAllUsers(users)
+            getCase.getAllUsers()
         }
-        userList.value = users
     }
+    fun update(ui: ActivityUsersListAddBinding){
+        UseCaseGetAllUsers.updateAddFriend(ui)
+    }
+    fun getUsers(){
+        userList = UtilsReference.mutableUsersList
+        userList.value = UtilsReference.list
+    }
+
 }

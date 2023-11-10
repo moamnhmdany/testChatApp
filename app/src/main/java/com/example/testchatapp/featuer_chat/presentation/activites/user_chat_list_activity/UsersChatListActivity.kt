@@ -11,7 +11,7 @@ class UsersChatListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val ui = setting.settingUserList(this, this)
 
-        actions.observeUsers(this,this, ui)
+      //  actions.observeUsers(this,this, ui)
         actions.addFriend(ui,this)
     }
 

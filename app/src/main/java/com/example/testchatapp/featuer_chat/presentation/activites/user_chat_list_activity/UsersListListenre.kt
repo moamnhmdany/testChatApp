@@ -15,12 +15,11 @@ class UsersListListenre {
     lateinit var model: ViewModelUsersList
     val listAdapter = UtilsReference.chatListAdapter
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    private val  usersList = UtilsReference.list
+    private val  usersList = UtilsReference.mutableUsersList
 
     fun observeUsers(owner: ViewModelStoreOwner,  context: Context, ui: ActivityUsersChatListBinding) {
-        val model = ViewModelProvider(owner)[ViewModelUsersList::class.java]
         recycleViewSetting(context, ui)
-        model.getUsers(usersList)
+        model.getUsers()
         model.update(ui)
     }
 

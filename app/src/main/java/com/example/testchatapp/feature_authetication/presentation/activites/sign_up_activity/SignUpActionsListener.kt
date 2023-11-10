@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import com.example.testchatapp.databinding.ActivitySignUpBinding
+import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity
 import com.example.testchatapp.feature_authetication.domain.model.Users
 import com.example.testchatapp.feature_authetication.domain.use_case.UserOpareations
@@ -22,11 +23,12 @@ class SignUpActionsListener {
         return Triple(userName, email, password)
     }
     private fun getUser(userName: String, email: String, password: String): Users {
-        val user = UserOpareations.newUser()
+        val user = UtilsReference.user
         user.userName = userName
         user.email = email
         user.password = password
-
+//        user.listUserFriends.value = UtilsReference.listUserFriends
+//        user.listUserUnFriends.value = UtilsReference.listUserUnfriends
         return  user
     }
     private fun cleanText(ui: ActivitySignUpBinding){
