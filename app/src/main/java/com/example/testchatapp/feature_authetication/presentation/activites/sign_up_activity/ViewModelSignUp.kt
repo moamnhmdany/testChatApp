@@ -9,7 +9,7 @@ import com.example.testchatapp.feature_authetication.domain.model.Users
 import com.example.testchatapp.feature_authetication.domain.use_case.UseCaseRegisterUser
 import kotlinx.coroutines.launch
 
-class ViewModelSignUp : ViewModel() {
+class ViewModelSignUp(context: Context) : ViewModel() {
 
        private val usersList = ArrayList<Users>()
        private val usersLiveData =  MutableLiveData<ArrayList<Users> >()
@@ -19,7 +19,7 @@ class ViewModelSignUp : ViewModel() {
           usersLiveData.value= usersList
          viewModelScope.launch {
 
-             UseCaseRegisterUser().createUser(user,context)
+             UseCaseRegisterUser(context).createUser(user,context)
          }
 
 

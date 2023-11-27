@@ -6,7 +6,7 @@ import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
 class LoginActivity : AppCompatActivity() {
     private val utilti2 = Utiles()
-    private val viewModel = ViewModelLogin()
+    private val viewModel = ViewModelLogin(this)
     private val action = LoginActionsListener()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

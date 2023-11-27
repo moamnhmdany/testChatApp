@@ -12,9 +12,7 @@ import kotlinx.coroutines.launch
 
 class ViewModelUsersList :ViewModel(){
     private val getCase =  UseCaseGetAllUsers()
-     fun update(ui:ActivityUsersChatListBinding){
-         UseCaseGetAllUsers.updateUserList(ui)
-     }
+
 
      fun getUsers(){
 

@@ -8,9 +8,9 @@ import com.example.testchatapp.feature_authetication.domain.model.Users
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
-class ChatRepositoryImpl :Auth_Repository{
+class ChatRepositoryImpl(context: Context) :Auth_Repository{
 
-      private val myDataBaseDao : MyDataBaseDao = FireeBase()
+      private val myDataBaseDao : MyDataBaseDao = FireeBase(context)
     override suspend fun createNewUserWithEmail(user: Users,context: Context) {
 
              myDataBaseDao.createUserWithEmailAndPassword(user,context)

@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 class UsersListAddActivity : AppCompatActivity() {
     val setting = Utiles()
     val actions = AddFriendListener()
-    var state = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        val ui = setting.settingUserListAddFriend(this,this)

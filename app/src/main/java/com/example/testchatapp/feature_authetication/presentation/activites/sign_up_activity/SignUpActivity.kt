@@ -2,14 +2,14 @@ package com.example.testchatapp.feature_authetication.presentation.activites.sig
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.testchatapp.feature_authetication.domain.use_case.UserOpareations
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
 class SignUpActivity : AppCompatActivity() {
     private val utilti = Utiles()
-    private val viewModel = ViewModelSignUp()
+    private val viewModel = ViewModelSignUp(this)
     private val action = SignUpActionsListener()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,7 @@ class SignUpActivity : AppCompatActivity() {
        action.signUp(ui,viewModel,this,this)
        action.openLogin(ui,this)
        UserOpareations.checkUserState(this)
+
 
 
     }

@@ -64,5 +64,10 @@ class SignUpActionsListener {
           activity.startActivity(intent)
 
       }
+      fun getContext(context: Context):Context{
+          return context
+
+      }
+
 
 }

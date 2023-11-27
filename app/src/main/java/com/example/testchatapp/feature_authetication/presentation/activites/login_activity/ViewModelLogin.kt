@@ -12,10 +12,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class ViewModelLogin : ViewModel() {
+class ViewModelLogin(context: Context) : ViewModel() {
 
     val data = MutableLiveData<Users>()
-    private val userCase =   UseCaseUserLogin()
+    private val userCase =   UseCaseUserLogin(context)
     private lateinit var   check : Task<AuthResult>
 
     fun loginUser(context:Context,user: Users): Task<AuthResult> {

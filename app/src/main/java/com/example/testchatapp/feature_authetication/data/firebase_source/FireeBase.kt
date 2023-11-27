@@ -9,35 +9,29 @@ import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
-class FireeBase : MyDataBaseDao {
+class FireeBase(val context: Context) : MyDataBaseDao {
 
 
     private lateinit var userDataBase: FirebaseAuth
     private lateinit var myRealTimeDataBase: FirebaseDatabase
     private lateinit var myTaskResult: Task<AuthResult>
-    var isFirstUserExists = false
-    val usersRef = Firebase.database.reference.child("Users")
-    val usersUnfriendRef = Firebase.database.reference.child("UsersUnfriend")
+    private val usersRef = Firebase.database.reference.child("Users")
+    private val usersUnfriendRef = Firebase.database.reference.child("UsersUnfriend")
 
 
 
     override suspend fun loginWithEmailFireBase(user: Users, context: Context): Task<AuthResult> {
-               this.userDataBase = Firebase.auth
+        this.userDataBase = Firebase.auth
 
         myTaskResult = userDataBase.signInWithEmailAndPassword(user.email, user.password)
 
@@ -53,8 +47,7 @@ class FireeBase : MyDataBaseDao {
 
             myTaskResult =
                 this.userDataBase.createUserWithEmailAndPassword(user.email, user.password)
-
-             addUserFromResult( user)
+            addUserFromResult(user)
 
 
         } else {
@@ -65,30 +58,28 @@ class FireeBase : MyDataBaseDao {
     }
 
 
-    private  fun addUserFromResult(user: Users) {
+    @OptIn(DelicateCoroutinesApi::class)
+    private suspend fun addUserFromResult(user: Users) {
 
         try {
             myTaskResult.addOnCompleteListener { task ->
 
-                val id = task.result.user!!.uid
+                UtilsReference.user.id = task.result.user!!.uid
 
                 if (task.isComplete) {
                     if (task.isSuccessful) {
 
 
-                               isFirstuserExist(onSuccessListener = {
-                                   checkAndRun(user,id)
+                        GlobalScope.launch(Dispatchers.IO) {
 
-                                 }
-                               )
+                            isFirstUserExist()
 
+                            checkAndRun(user)
 
-
-
-
-
-
+                        }
                     }
+
+
                 } else
                     println("failed add new user")
             }
@@ -98,87 +89,96 @@ class FireeBase : MyDataBaseDao {
 
     }
 
-    private fun checkAndRun(user: Users,id:String) {
-        if (FireBaseListeners.isFirstUserExists) {
-            makeUserRecord(user, id)
+    @OptIn(DelicateCoroutinesApi::class)
+    private suspend fun checkAndRun(user: Users) {
+        println("========= start checkAndRun")
+
+        if (FireBaseListeners.isFirstUserExists!= null) {
+
+            makeUserRecord(user)
             println("done add data base of user ")
+            makeUnfriendList()
             addUnfriendListToFireBse()
             unFriendNewUserAddToFirstUser()
-        }else{
-            makeUserRecord(user, id)
+        } else {
+            makeUserRecord(user)
+            saveFirstUserId()
+            println("done add data base of user ")
         }
 
+        println("=========== finish checkAndRun")
     }
 
-    private  fun isFirstuserExist(onSuccessListener:()-> Unit) {
-         usersRef.addValueEventListener(FireBaseListeners.isFirstUserExistsListener{onSuccessListener()})
-         println("========================> done check first user")
+    private suspend fun isFirstUserExist() {
+       try {
 
+           FireBaseListeners.isFirstUserExists = usersRef.get().await().children.first()
+           println("========================> done check first user ${FireBaseListeners.isFirstUserExists}")
+
+       }catch (e:Exception){
+          println(e.toString())
+       }
     }
 
 
-    private fun makeUserRecord(user: Users, id: String) {
+    private suspend fun makeUserRecord(user: Users) {
 
         try {
-            user.id = id
-            usersRef.child(id).setValue(user)
+
+            usersRef.child(UtilsReference.user.id).setValue(user).await()
             println("========================> done add new user to realtime data base ")
         } catch (e: Exception) {
             println("database error = $e")
         }
     }
 
-
-    @OptIn(DelicateCoroutinesApi::class)
-    fun addUnfriendListToFireBse()=
-
-        GlobalScope.launch(Dispatchers.IO) {
-            makeUnfriendList()
-            usersUnfriendRef.child(UtilsReference.user.id)
-                .setValue(UtilsReference.listUsersUnfriends).await()
+    private suspend fun makeUnfriendList() {
+        withContext(Dispatchers.Main) {
+            usersRef.get().await().children.forEach { FireBaseListeners.unFriendListListener(it) }
         }
-
-
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun makeUnfriendList() {
-        myRealTimeDataBase = Firebase.database
-        GlobalScope.launch(Dispatchers.IO) {
-            usersRef.get().await()
-            usersRef.addListenerForSingleValueEvent(FireBaseListeners.unFriendListListener())
-        }
-
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun unFriendNewUserAddToFirstUser() {
-        myRealTimeDataBase = Firebase.database
+    private suspend fun addUnfriendListToFireBse() {
+        withContext(Dispatchers.Main) {
+            UtilsReference.mutableUsersUnFriendsList.value?.forEach {
+                usersUnfriendRef.child(UtilsReference.user.id)
+                    .setValue(it).addOnCompleteListener {
+                        println("================== finish addUnfriendListToFireBse")
+                    }
 
-        GlobalScope.launch(Dispatchers.IO) {
-
-            val userId = setupUnfriend()
-
-            usersUnfriendRef.child(userId).setValue(UtilsReference.unFriendUser)
+            }
         }
+    }
+
+    private suspend fun unFriendNewUserAddToFirstUser() {
+
+        val userId = setupUnfriend()
+        usersUnfriendRef.child(userId).setValue(UtilsReference.unFriendUser).await()
+        println("===================== finish add unFriendNewUserAddToFirstUser")
     }
 
     private suspend fun setupUnfriend(): String {
-        val userId = getFirstUser()!!.id
-        val userUnfriendId = UtilsReference.user.id
-        val userUnfriendUsername = UtilsReference.user.userName
+        val userId = getFirstUserId()
 
-        UtilsReference.unFriendUser.userId = userId
-        UtilsReference.unFriendUser.userUnfriendId = userUnfriendId
-        UtilsReference.unFriendUser.userUnfriendUserName = userUnfriendUsername
+
+        UtilsReference.unFriendUser.userId = userId!!
+        UtilsReference.unFriendUser.userUnfriendId =  UtilsReference.user.id
+        UtilsReference.unFriendUser.userUnfriendUserName = UtilsReference.user.userName
         return userId
     }
 
-    private suspend fun getFirstUser(): Users? {
-        return usersRef.snapshots.first().getValue(Users::class.java)
+    private suspend fun  saveFirstUserId(){
+        Firebase.database.reference.
+        child("FirstUserId").setValue(FirebaseAuth.getInstance().uid).await()
+    }
+    private suspend fun getFirstUserId():String?{
+     return   Firebase.database.reference.
+        child("FirstUserId").get().await().getValue(String::class.java)
     }
 
-    private fun makeToast(context: Context, msg: String) {
+    private fun makeToast(context: Context, text: String) {
         println("user data is empty")
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+        Toast.makeText(context, text, Toast.LENGTH_SHORT)
             .show()
     }
 

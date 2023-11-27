@@ -6,28 +6,25 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.databinding.ActivityUsersListAddBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerPage
 import com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity
-import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapter
 
 class AddFriendListener {
     private val addFriendAdapter = UtilsReference.addFriendListAdapter
-    private val listUsers = UtilsReference.mutableUsersList
-
-    val model = AddFriendModel()
+    private val listUsers =        UtilsReference.mutableUsersUnFriendsList
+    private val model =            UtilsReference.addFriendModel
     fun observeUsers(lifecycleOwner: LifecycleOwner,ui:ActivityUsersListAddBinding,context:Context){
-        model.getUsers()
-        model.getUsersDataBase()
-
-
-        UtilsReference.mutableUsersList.observe(lifecycleOwner, Observer {
+        showProgrecceBar(ui)
+        model.getUnfriendUsersDataBase()
+        UtilsReference.mutableUsersUnFriendsList.observe(lifecycleOwner, Observer {
             recycleviewSetting(context,ui)
         })
-        model.update(ui)
+        hideProgrecceBar(ui)
+        UtilsReference.mutableUsersUnFriendsList.observe(lifecycleOwner, Observer {
+            it.clear()
+        })
     }
 
    private fun recycleviewSetting(context:Context,ui: ActivityUsersListAddBinding){
@@ -55,12 +52,6 @@ class AddFriendListener {
 
     }
 
-//    fun addFriend(ui: ActivityUsersListAddBinding){
-//        val position = UtilsReference.addFriendListAdapter.positionElement
-//        val receieverId =   UtilsReference.addFriendListAdapter.list.elementAt(position).id
-//        println("==================$receieverId")
-//        UtilsReference.addFriendListAdapter.notifyItemRemoved(position)
-//    }
     fun goToChat(context: Context,id:String){
         val intent = Intent(context, ChatMessangerPage::class.java)
         intent.putExtra("receiverId",id)

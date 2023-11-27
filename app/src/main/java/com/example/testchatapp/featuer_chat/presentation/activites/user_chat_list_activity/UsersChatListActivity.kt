@@ -1,18 +1,28 @@
 package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
 class UsersChatListActivity : AppCompatActivity() {
     private val setting = Utiles()
     private val actions = UsersListListenre()
+    lateinit var drawerLayout : DrawerLayout
+    lateinit var ui : ActivityUsersChatListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val ui = setting.settingUserList(this, this)
+         ui = setting.settingUserList(this, this)
 
-      //  actions.observeUsers(this,this, ui)
         actions.addFriend(ui,this)
+
+        drawerLayout =  actions.setupNavSideBar(ui,this)
+        actions.openDrawer(ui, drawerLayout)
+        actions.menuListener(ui,this)
+        onBackPressedDispatcher.addCallback(this,actions.onBackPressListener(drawerLayout))
     }
 
 

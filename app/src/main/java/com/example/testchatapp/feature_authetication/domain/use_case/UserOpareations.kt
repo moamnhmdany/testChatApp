@@ -12,13 +12,9 @@ import com.google.firebase.ktx.Firebase
 class UserOpareations {
 
     companion object{
-        fun mutableUsersListClean(){
-            UtilsReference.mutableUsersList.value!!.clear()
-        }
 
 
-
-         fun checkUserState(context: Context){
+        fun checkUserState(context: Context){
 
              val userDataBase: FirebaseAuth = Firebase.auth
 

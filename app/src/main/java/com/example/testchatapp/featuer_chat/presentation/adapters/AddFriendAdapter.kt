@@ -6,11 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.databinding.UserItemAddFriendBinding
 import com.example.testchatapp.databinding.UserItemAddFriendBinding.inflate
+import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.feature_authetication.domain.model.Users
 
 class AddFriendAdapter : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>() {
-    lateinit var list: MutableLiveData<ArrayList<Users>>
+    lateinit var list: MutableLiveData<ArrayList<UsersUnfriend>>
 
     inner class MyViewHolder(val MyView: UserItemAddFriendBinding) :
         RecyclerView.ViewHolder(MyView.root) {
@@ -36,7 +37,8 @@ class AddFriendAdapter : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         with(holder) {
             with(list.value!![position]) {
-                holder.MyView.tvUserName.text = userName
+                holder.MyView.tvUserName.text = userUnfriendUserName
+
                 holder.MyView.btnImageAddFriend.setOnClickListener {
                     removeItem(adapterPosition)
                     println("==================$adapterPosition")

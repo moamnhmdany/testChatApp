@@ -1,64 +1,53 @@
 package com.example.testchatapp.feature_authetication.data.firebase_source
 
+import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.feature_authetication.domain.model.Users
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class FireBaseListeners {
 
-    companion object{
-        var isFirstUserExists = false
-      fun  isFirstUserExistsListener(onDataChange:()-> Unit = {}):ValueEventListener{
+    companion object {
+        var isFirstUserExists : DataSnapshot? = null
 
-            val listener = object : ValueEventListener {
 
-                override fun onDataChange(snapshot: DataSnapshot) {
+        fun unFriendListListener(snapshot:DataSnapshot) {
 
-                    if (snapshot.children.first().exists())
-                        isFirstUserExists = true
-                    println("========================> done check the isFirstUserExists =  $isFirstUserExists ")
-                    onDataChange()
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    println(error)
-                }
+                           val userLogId = FirebaseAuth.getInstance().uid
 
-            }
-            return  listener
-        }
 
-        fun unFriendListListener(): ValueEventListener {
-            val listener = object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val userId = UtilsReference.user.id
-                    val isFirstUser = snapshot.children.first().exists()
-                    if (isFirstUser) {
-                        snapshot.children.forEach {
-                            val userUnfriendDb = it.getValue(Users::class.java)
+                            val userUnfriendDb = snapshot.getValue(Users::class.java)
+
                             val idUnfriend = userUnfriendDb!!.id
                             val userNameUnfriend = userUnfriendDb.userName
 
-                            UtilsReference.unFriendUser.userId = userId
-                            UtilsReference.unFriendUser.userUnfriendId = idUnfriend
-                            UtilsReference.unFriendUser.userUnfriendUserName = userNameUnfriend
-                            UtilsReference.mutableUsersUnFriendsList.value!!.add(UtilsReference.unFriendUser)
+                            println("============$userNameUnfriend")
+                            val unFriend = UsersUnfriend()
+
+                            unFriend.userId = UtilsReference.user.id
+                            unFriend.userUnfriendId = idUnfriend
+                            unFriend.userUnfriendUserName = userNameUnfriend
+
+                            UtilsReference.mutableUsersUnFriendsList.value =
+                                              UtilsReference.listUsersUnfriends
+
+                           if (userLogId!=idUnfriend) {
+                            println(UtilsReference.mutableUsersUnFriendsList.value)
+                            UtilsReference.mutableUsersUnFriendsList.apply() {
+                                this.value!!.add(unFriend)
+                            }
                         }
-                    }
+                        println("========================finish  makeUnfriendList")
 
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    println(error)
-                }
-
-            }
-            return listener
         }
     }
 

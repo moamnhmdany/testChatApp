@@ -7,11 +7,11 @@ import com.example.testchatapp.feature_authetication.domain.model.Users
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
-class UseCaseUserLogin {
+class UseCaseUserLogin(context: Context) {
 
 
 
-    private val chatRepo : Auth_Repository = ChatRepositoryImpl()
+    private val chatRepo : Auth_Repository = ChatRepositoryImpl(context)
 
     suspend fun login(user: Users, context: Context): Task<AuthResult> {
        return chatRepo.loginWithEmail(user,context)
