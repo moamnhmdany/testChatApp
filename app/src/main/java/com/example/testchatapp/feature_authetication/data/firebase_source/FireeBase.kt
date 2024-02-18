@@ -97,9 +97,9 @@ class FireeBase(val context: Context) : MyDataBaseDao {
 
             makeUserRecord(user)
             println("done add data base of user ")
-            makeUnfriendList()
-            addUnfriendListToFireBse()
-            unFriendNewUserAddToFirstUser()
+//            makeUnfriendList()
+//            addUnfriendListToFireBse()
+//            unFriendNewUserAddToFirstUser()
         } else {
             makeUserRecord(user)
             saveFirstUserId()

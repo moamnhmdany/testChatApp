@@ -12,7 +12,6 @@ import com.example.testchatapp.featuer_chat.presentation.adapters.UserItemAdapte
 import com.example.testchatapp.feature_authetication.domain.model.Users
 
 object UtilsReference {
-
      var user = Users()
      var list = ArrayList<Users>()
 
@@ -38,7 +37,7 @@ object UtilsReference {
     var addFriendModel = AddFriendModel()
 
     var useCaseGetAllUsers = UseCaseGetAllUsers()
-
+    var userFriends = UsersFriendCase()
 
 
 

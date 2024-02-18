@@ -3,6 +3,7 @@ package com.example.testchatapp.featuer_chat.presentation.activites.users_lists_
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 import kotlinx.coroutines.launch
 
@@ -17,4 +18,10 @@ class UsersListAddActivity : AppCompatActivity() {
         actions.goback(this,ui)
         
     }
+
+    override fun onStop() {
+        super.onStop()
+        UtilsReference.mutableUsersUnFriendsList.value!!.clear()
+    }
+
 }

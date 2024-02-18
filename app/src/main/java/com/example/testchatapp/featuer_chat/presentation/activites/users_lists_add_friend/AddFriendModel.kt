@@ -2,19 +2,20 @@ package com.example.testchatapp.featuer_chat.presentation.activites.users_lists_
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testchatapp.databinding.ActivityUsersListAddBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UseCaseGetAllUsers
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AddFriendModel : ViewModel() {
-      private val getCase = UtilsReference.useCaseGetAllUsers
-
+    val singletonClass = UtilsReference
+      // private var getCase:UseCaseGetAllUsers = UseCaseGetAllUsers()
+     //  private var getCase = UtilsReference.useCaseGetAllUsers
 
     fun getUnfriendUsersDataBase(){
+      //  var getCase = UtilsReference.useCaseGetAllUsers
         viewModelScope.launch(Dispatchers.IO) {
-            getCase.setupUersUnfriendList()
+            singletonClass.useCaseGetAllUsers.setupUersUnfriendList()
         }
     }
 
