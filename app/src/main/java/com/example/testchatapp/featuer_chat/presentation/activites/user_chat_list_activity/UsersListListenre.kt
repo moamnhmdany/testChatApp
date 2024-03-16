@@ -3,15 +3,12 @@ package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_li
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +18,6 @@ import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 
 class UsersListListenre {
     lateinit var model: ViewModelUsersList
@@ -42,7 +37,7 @@ class UsersListListenre {
         ui.usersChatListRecyclerview.adapter = listAdapter
     }
 
-    fun addFriend(ui: ActivityUsersChatListBinding,context:Context) {
+    fun openAddFriendListScreen(ui: ActivityUsersChatListBinding, context:Context) {
 
         ui.btnAddFriend.setOnClickListener {
             val intent = Intent(context, UsersListAddActivity::class.java)

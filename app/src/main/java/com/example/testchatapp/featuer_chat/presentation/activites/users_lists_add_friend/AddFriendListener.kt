@@ -16,7 +16,7 @@ import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapt
 
 class AddFriendListener {
          var addFriendAdapter : AddFriendAdapter? =null
-        var listUsers : MutableLiveData<ArrayList<UsersUnfriend>>? = null
+          var listUsers : MutableLiveData<ArrayList<UsersUnfriend>>? = null
           var model : AddFriendModel? = null
     init {
         addFriendAdapter = UtilsReference.addFriendListAdapter
@@ -28,26 +28,25 @@ class AddFriendListener {
 
         model?.getUnfriendUsersDataBase()
         UtilsReference.mutableUsersUnFriendsList.observe(lifecycleOwner, Observer {
-                recycleviewSetting(context,ui)
+                recycleViewSetting(context,ui)
 
         })
         hideProgrecceBar(ui)
 
     }
 
-   private fun recycleviewSetting(context:Context,ui: ActivityUsersListAddBinding){
+   private fun recycleViewSetting(context:Context, ui: ActivityUsersListAddBinding){
        val layoutManger = LinearLayoutManager(context)
        ui.usersAddList.layoutManager =  layoutManger
        addFriendAdapter?.list = listUsers!!
        ui.usersAddList.adapter = addFriendAdapter
    }
+
     fun goback(context: Context,ui: ActivityUsersListAddBinding){
         ui.btnAddFriendBack.setOnClickListener {
             val intent = Intent(context, UsersChatListActivity::class.java)
             context.startActivity(intent)
         }
-
-
     }
     companion object{
         fun showProgrecceBar(ui: ActivityUsersListAddBinding){
@@ -56,8 +55,6 @@ class AddFriendListener {
         fun hideProgrecceBar(ui: ActivityUsersListAddBinding){
                ui.usersListAddProgressBar.visibility = View.INVISIBLE
         }
-
-
     }
 
     fun goToChat(context: Context,id:String){
@@ -67,3 +64,4 @@ class AddFriendListener {
     }
 
 }
+

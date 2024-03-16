@@ -1,9 +1,7 @@
 package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity
 
 import android.os.Bundle
-import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
@@ -17,7 +15,7 @@ class UsersChatListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
          ui = setting.settingUserList(this, this)
 
-        actions.addFriend(ui,this)
+        actions.openAddFriendListScreen(ui,this)
 
         drawerLayout =  actions.setupNavSideBar(ui,this)
         actions.openDrawer(ui, drawerLayout)
