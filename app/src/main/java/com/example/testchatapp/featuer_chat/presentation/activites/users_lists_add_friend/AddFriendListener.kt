@@ -23,6 +23,7 @@ class AddFriendListener {
          listUsers =        UtilsReference.mutableUsersUnFriendsList
          model =            UtilsReference.addFriendModel
     }
+
     fun observeUsers(lifecycleOwner: LifecycleOwner,ui:ActivityUsersListAddBinding,context:Context){
         showProgrecceBar(ui)
 

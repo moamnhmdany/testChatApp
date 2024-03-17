@@ -10,12 +10,15 @@ import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 class UsersListAddActivity : AppCompatActivity(), ChatFriend {
     val setting = Utiles()
     val actions = AddFriendListener()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        val ui = setting.settingUserListAddFriend(this,this)
 
         actions.observeUsers(this,ui,this)
         actions.goback(this,ui)
+        UtilsReference.interfaceChat = this@UsersListAddActivity
+
         //goChat()
     }
 

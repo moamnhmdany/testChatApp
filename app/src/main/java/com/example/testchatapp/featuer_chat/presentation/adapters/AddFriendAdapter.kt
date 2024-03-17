@@ -1,6 +1,5 @@
 package com.example.testchatapp.featuer_chat.presentation.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
@@ -10,14 +9,13 @@ import com.example.testchatapp.databinding.UserItemAddFriendBinding.inflate
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.AddFriendListener
-import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class AddFriendAdapter(chatFriend :ChatFriend) : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>() {
+class AddFriendAdapter() : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>() {
     lateinit var list: MutableLiveData<ArrayList<UsersUnfriend>>
     private lateinit var chatFriend :ChatFriend
 
@@ -29,7 +27,6 @@ class AddFriendAdapter(chatFriend :ChatFriend) : RecyclerView.Adapter<AddFriendA
         fun getMyPosition(): Int {
             return adapterPosition
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -56,7 +53,8 @@ class AddFriendAdapter(chatFriend :ChatFriend) : RecyclerView.Adapter<AddFriendA
                     println("==================$userUnfriendUserName")
 
                     save(this.userId, this)
-                    chatFriend.openChat()
+                    val move = AddFriendListener()
+                    UtilsReference.interfaceChat.openChat()
                 }
             }
         }
