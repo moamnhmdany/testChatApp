@@ -68,7 +68,7 @@
 
             <EditText
                 android:id="@+id/chat_msg_textBox"
-                android:layout_width="220dp"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:autofillHints="name"

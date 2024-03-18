@@ -3,6 +3,7 @@ package com.example.testchatapp.featuer_chat.presentation.activites.users_lists_
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.adapters.ChatFriend
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
@@ -30,8 +31,8 @@ class UsersListAddActivity : AppCompatActivity(), ChatFriend {
         UtilsReference.mutableUsersUnFriendsList.value!!.clear()
     }
 
-    override fun openChat() {
-        actions.goToChat(this,"")
+    override fun openChat(usersUnfriendData: UsersUnfriend) {
+        actions.goToChat(this,usersUnfriendData)
     }
 
 }

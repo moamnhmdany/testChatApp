@@ -58,9 +58,9 @@ class AddFriendListener {
         }
     }
 
-    fun goToChat(context: Context,id:String){
+    fun goToChat(context: Context,usersUnfriendData: UsersUnfriend){
         val intent = Intent(context, ChatMessangerPage::class.java)
-        intent.putExtra("receiverId",id)
+        intent.putExtra("userDataFriend",usersUnfriendData)
         context.startActivity(intent)
     }
 
