@@ -20,6 +20,7 @@ class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     private val messegeList = ArrayList<Message>()
     inner  class ReciverViewHolder(val reciverView:ItemReciverBinding):RecyclerView.ViewHolder(reciverView.root)
    inner class SenderViewHolder(val sendrView : ItemSenderBinding):RecyclerView.ViewHolder(sendrView.root)
+
      private fun checkViewType(position: Int):Boolean{
          return  messegeList[position].userId == FirebaseAuth.getInstance().uid
      }

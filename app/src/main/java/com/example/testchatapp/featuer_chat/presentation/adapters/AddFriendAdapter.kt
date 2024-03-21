@@ -55,6 +55,7 @@ class AddFriendAdapter() : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>()
                     save(this.userId, this)
                     val move = AddFriendListener()
                     UtilsReference.interfaceChat.openChat(this)
+                    println("==-=-=-=--=-=-=-==-=-=-=-== ${this.userUnfriendUserName}")
                 }
             }
         }

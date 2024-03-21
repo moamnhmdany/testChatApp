@@ -63,6 +63,6 @@ class AddFriendListener {
         intent.putExtra("userDataFriend",usersUnfriendData)
         context.startActivity(intent)
     }
-
+        .
 }
 

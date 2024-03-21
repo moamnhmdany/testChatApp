@@ -7,13 +7,14 @@ import com.example.testchatapp.featuer_chat.presentation.activites.user_chat_lis
 
 class ChatMessangerlistenre {
 
+
+
     fun goToMain(context: Context,ui:ActivityChatMessangerPageBinding){
         ui.btnBackChatMsg.setOnClickListener {
         val intent = Intent(context,UsersChatListActivity::class.java)
         context.startActivity(intent)
       }
     }
-
 
 
 }
