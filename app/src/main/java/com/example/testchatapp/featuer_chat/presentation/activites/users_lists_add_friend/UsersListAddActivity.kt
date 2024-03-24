@@ -32,6 +32,7 @@ class UsersListAddActivity : AppCompatActivity(), ChatFriend {
     }
 
     override fun openChat(usersUnfriendData: UsersUnfriend) {
+        println("999999999999999999999-- ${usersUnfriendData.userUnfriendUserName}")
         actions.goToChat(this,usersUnfriendData)
     }
 

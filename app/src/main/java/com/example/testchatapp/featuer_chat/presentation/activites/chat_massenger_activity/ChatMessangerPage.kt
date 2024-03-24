@@ -22,11 +22,12 @@ class ChatMessangerPage : AppCompatActivity() {
         action.goToMain(this, ui)
         val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                intent.getParcelableExtra("userDataFriend", UsersUnfriend::class.java)
+
         } else {
             intent.getParcelableExtra<UsersUnfriend>("userDataFriend")
         }
-
-            println("-----------------"+userData!!.userUnfriendUserName)
+            val data = userData!!.userUnfriendUserName
+            println("-----------------"+data)
 
     }
 
