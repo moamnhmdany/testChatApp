@@ -6,9 +6,8 @@ import android.content.Intent
 import android.view.View
 import com.example.testchatapp.databinding.ActivitySignUpBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
-import com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity
+import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import com.example.testchatapp.feature_authetication.domain.use_case.UserOpareations
 import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
 
 class SignUpActionsListener {
@@ -60,7 +59,7 @@ class SignUpActionsListener {
         }
     }
       private fun goUserListPage(activity: Activity){
-          val intent = Intent(activity,UsersChatListActivity::class.java)
+          val intent = Intent(activity,UsersChatRoomListActivity::class.java)
           activity.startActivity(intent)
 
       }

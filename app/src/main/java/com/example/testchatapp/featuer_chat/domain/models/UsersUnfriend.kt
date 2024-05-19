@@ -1,11 +1,7 @@
 package com.example.testchatapp.featuer_chat.domain.models
 
-import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
-import kotlinx.parcelize.Parceler
-import kotlinx.parcelize.Parcelize
-
 
 class UsersUnfriend() :Parcelable{
     var userId = ""

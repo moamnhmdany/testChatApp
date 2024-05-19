@@ -46,7 +46,6 @@ class AddFriendAdapter() : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>()
                 holder.MyView.tvUserName.text = userUnfriendUserName
                 MyView.btnImageAddFriend
 
-                // holder.MyView.btnImageAddFriend.setImageResource(R.drawable.chat)
                 holder.MyView.btnImageAddFriend.setOnClickListener {
                     removeItem(adapterPosition)
                     println("==================$userUnfriendUserName")

@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testchatapp.databinding.ActivityUsersListAddBinding
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
-import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerPage
-import com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity
+import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
+import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity
 import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapter
 
 class AddFriendListener {
@@ -45,7 +45,7 @@ class AddFriendListener {
 
     fun goback(context: Context,ui: ActivityUsersListAddBinding){
         ui.btnAddFriendBack.setOnClickListener {
-            val intent = Intent(context, UsersChatListActivity::class.java)
+            val intent = Intent(context, UsersChatRoomListActivity::class.java)
             context.startActivity(intent)
         }
     }
@@ -59,7 +59,7 @@ class AddFriendListener {
     }
 
     fun goToChat(context: Context,usersUnfriendData: UsersUnfriend){
-        val intent = Intent(context, ChatMessangerPage::class.java)
+        val intent = Intent(context, ChatMessangerActivity::class.java)
         val data = usersUnfriendData.userUnfriendUserName
         println("goChat-=-=-=--=-=-=-==-=-=-=$data")
         intent.putExtra("userDataFriend",usersUnfriendData)

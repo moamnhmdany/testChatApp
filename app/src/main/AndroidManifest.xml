@@ -20,12 +20,12 @@
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
             />
         <activity
-            android:name=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerPage"
+            android:name=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:name=".featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity"
+            android:name=".featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
             android:windowSoftInputMode="adjustPan"></activity>

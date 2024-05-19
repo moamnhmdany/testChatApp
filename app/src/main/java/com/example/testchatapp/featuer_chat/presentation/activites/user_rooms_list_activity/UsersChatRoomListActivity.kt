@@ -1,4 +1,4 @@
-package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity
+package com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
-class UsersChatListActivity : AppCompatActivity() {
+class UsersChatRoomListActivity : AppCompatActivity() {
     private val setting = Utiles()
-    private val actions = UsersListListenre()
+    private val actions = UserRommListListenre()
     lateinit var drawerLayout : DrawerLayout
     lateinit var ui : ActivityUsersChatListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +21,7 @@ class UsersChatListActivity : AppCompatActivity() {
         actions.openDrawer(ui, drawerLayout)
         actions.menuListener(ui,this)
         onBackPressedDispatcher.addCallback(this,actions.onBackPressListener(drawerLayout))
+        actions.observeUsers(this,ui,this)
     }
 
 

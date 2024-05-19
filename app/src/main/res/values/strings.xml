@@ -35,6 +35,8 @@
     <string name="navigation_drawer_open">navigation_drawer_open</string>
     <string name="navigation_drawer_close">navigation_drawer_close</string>
     <string name="logOut">log out</string>
+    <string name="last_message">last message</string>
+    <string name="moamn_ali">moamn ali</string>
 
 
 </resources>

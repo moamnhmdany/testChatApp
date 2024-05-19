@@ -4,9 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding
-import com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity.UsersChatListActivity
+import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import com.example.testchatapp.feature_authetication.domain.use_case.UserOpareations
 import com.example.testchatapp.feature_authetication.presentation.activites.sign_up_activity.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 import android.view.View
@@ -77,7 +76,7 @@ class LoginActionsListener {
 
 
          fun goUserChatList(context: Context) {
-             val intent = Intent(context, UsersChatListActivity::class.java)
+             val intent = Intent(context, UsersChatRoomListActivity::class.java)
              context.startActivity(intent)
 
 
@@ -100,7 +99,7 @@ class LoginActionsListener {
            auth = FirebaseAuth.getInstance()
 
         if (auth.currentUser !=null){
-            context.startActivity(Intent(context,UsersChatListActivity::class.java))
+            context.startActivity(Intent(context,UsersChatRoomListActivity::class.java))
             context.finish()
         }
     }

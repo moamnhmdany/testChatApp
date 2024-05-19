@@ -1,9 +1,9 @@
 package com.example.testchatapp.featuer_chat.domain.models
 
 class Message {
-    var message = ""
+    var userId = ""
     var messageId = ""
     var reciverId = ""
-    var userId = ""
+    var message = ""
     var messageTime = ""
 }

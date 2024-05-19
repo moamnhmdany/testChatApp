@@ -9,7 +9,7 @@ import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
-class ChatMessangerPage : AppCompatActivity() {
+class ChatMessangerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatMessangerPageBinding
     private val action = ChatMessangerlistenre()
     private val setting = Utiles()
@@ -20,15 +20,7 @@ class ChatMessangerPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val ui = setting.settingChatMessangerPage(this, this)
         action.goToMain(this, ui)
-        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-               intent.getParcelableExtra("userDataFriend", UsersUnfriend::class.java)
-
-        } else {
-            intent.getParcelableExtra<UsersUnfriend>("userDataFriend")
-        }
-            val data = userData!!.userUnfriendUserName
-            println("-----------------"+data)
-
+        action.sendMessage(ui,intent)
     }
 
 }

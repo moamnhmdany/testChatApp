@@ -7,7 +7,7 @@
         android:id="@+id/root_ly"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerPage"
+        tools:context=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity"
         android:background="@color/grayTextColor"
         >
 

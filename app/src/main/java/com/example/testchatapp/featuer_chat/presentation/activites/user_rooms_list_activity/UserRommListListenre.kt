@@ -1,4 +1,4 @@
-package com.example.testchatapp.featuer_chat.presentation.activites.user_chat_list_activity
+package com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity
 
 import android.app.Activity
 import android.content.Context
@@ -9,7 +9,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.R
@@ -18,23 +19,36 @@ import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class UsersListListenre {
-    lateinit var model: ViewModelUsersList
-    val listAdapter = UtilsReference.chatListAdapter
+class UserRommListListenre {
+
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    private val  usersList = UtilsReference.mutableUsersList
 
-    fun observeUsers(owner: ViewModelStoreOwner,  context: Context, ui: ActivityUsersChatListBinding) {
-        recycleViewSetting(context, ui)
-        model.getUsers()
+
+
+     fun observeUsers(context: Context, ui: ActivityUsersChatListBinding,lifecycleOwner: LifecycleOwner) {
+        UtilsReference.viewModelRoomsList.setRoomList()
+
+
+         UtilsReference.userRoomList.observe(lifecycleOwner, Observer {
+             recycleViewSetting(context, ui)
+
+         })
+         UtilsReference.roomList.clear()
+
+
     }
 
     private fun recycleViewSetting(context: Context, ui: ActivityUsersChatListBinding) {
         layoutManager = LinearLayoutManager(context)
-        listAdapter.userList = usersList
-        ui.usersChatListRecyclerview.layoutManager = layoutManager
-        ui.usersChatListRecyclerview.adapter = listAdapter
+        ui.usersChatRoomListRecyclerview.layoutManager = layoutManager
+
+        UtilsReference.chatRoomListAdapter.roomList = UtilsReference.userRoomList
+       ui.usersChatRoomListRecyclerview.adapter = UtilsReference.chatRoomListAdapter
+
     }
 
     fun openAddFriendListScreen(ui: ActivityUsersChatListBinding, context:Context) {
@@ -42,6 +56,7 @@ class UsersListListenre {
         ui.btnAddFriend.setOnClickListener {
             val intent = Intent(context, UsersListAddActivity::class.java)
             context.startActivity(intent)
+
         }
     }
 

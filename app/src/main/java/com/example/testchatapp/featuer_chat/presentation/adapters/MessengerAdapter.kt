@@ -12,7 +12,7 @@ import com.example.testchatapp.databinding.ItemSenderBinding.inflate as senderIn
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.google.firebase.auth.FirebaseAuth
 
-class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MessengerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val    SENDER_TYPE  = 1
     private val    RECIVER_TYPE = 2
