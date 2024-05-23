@@ -25,14 +25,16 @@ class AddFriendListener {
     }
 
     fun observeUsers(lifecycleOwner: LifecycleOwner,ui:ActivityUsersListAddBinding,context:Context){
-        showProgrecceBar(ui)
+
 
         model?.getUnfriendUsersDataBase()
         UtilsReference.mutableUsersUnFriendsList.observe(lifecycleOwner, Observer {
+            showProgrecceBar(ui)
                 recycleViewSetting(context,ui)
+            hideProgrecceBar(ui)
 
         })
-        hideProgrecceBar(ui)
+
 
     }
 

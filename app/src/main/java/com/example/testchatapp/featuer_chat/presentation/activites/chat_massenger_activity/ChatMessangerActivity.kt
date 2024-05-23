@@ -21,6 +21,7 @@ class ChatMessangerActivity : AppCompatActivity() {
         val ui = setting.settingChatMessangerPage(this, this)
         action.goToMain(this, ui)
         action.sendMessage(ui,intent)
+        action.observeMessageList(intent,this,ui,this)
     }
 
 }

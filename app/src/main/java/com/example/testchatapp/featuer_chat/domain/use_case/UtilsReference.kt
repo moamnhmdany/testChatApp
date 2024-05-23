@@ -1,6 +1,7 @@
 package com.example.testchatapp.featuer_chat.domain.use_case
 
 import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.models.UserChats
@@ -14,6 +15,7 @@ import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapt
 import com.example.testchatapp.featuer_chat.presentation.adapters.MessengerAdapter
 import com.example.testchatapp.featuer_chat.presentation.adapters.UserRoomChatListAdapter
 import com.example.testchatapp.feature_authetication.domain.model.Users
+import com.google.firebase.database.ValueEventListener
 
 object UtilsReference {
      var user = Users()
@@ -41,7 +43,6 @@ object UtilsReference {
     var unFriendUser = UsersUnfriend()
     var userFriend = UserFriends()
 
-    var   mutableMessagesList = MutableLiveData<ArrayList<Message>>()
 
     var   chatsFriends = MutableLiveData<ArrayList<UserChats>>()
     var   chatFriend = UserChats()
@@ -54,6 +55,9 @@ object UtilsReference {
     var roomId = ""
     var sendCase = SendMessageCase()
     var chatMessageViewModel = ChatMessageViewModel()
+    var mutableMessageList = MutableLiveData<ArrayList<Message>>()
+    var messagesList = ArrayList<Message>()
+    var getMessagesCase = UserMessageCase()
 
 
 

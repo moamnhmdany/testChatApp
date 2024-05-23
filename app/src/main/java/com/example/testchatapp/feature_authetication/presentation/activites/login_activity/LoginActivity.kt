@@ -11,10 +11,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val ui = utilti2.settingLogin(this,this@LoginActivity)
-
+         action.checkUser(this)
          action.login(ui,this,viewModel)
          action.openSignUp(this,ui)
-         action.checkUser(this)
+
     }
 
 

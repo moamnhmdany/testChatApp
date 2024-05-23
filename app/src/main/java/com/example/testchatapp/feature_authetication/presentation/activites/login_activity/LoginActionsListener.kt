@@ -16,42 +16,49 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
 class LoginActionsListener {
-      private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     fun login(ui: ActivityLoginScreenBinding, activity: Context, modelLogin: ViewModelLogin) {
 
         ui.btnSingIn.setOnClickListener {
             val (email, pass) = getUserText(ui)
             val user = getUser(email, pass)
-          val results = modelLogin.loginUser(activity, user)
+            val results = modelLogin.loginUser(activity, user)
             showProgressBar(ui)
-            processResults(results,activity,ui)
+            processResults(results, activity, ui)
 
         }
     }
 
-    private fun processResults(res :Task<AuthResult>,context: Context,ui: ActivityLoginScreenBinding){
+    private fun processResults(
+        res: Task<AuthResult>,
+        context: Context,
+        ui: ActivityLoginScreenBinding
+    ) {
 
-         res.addOnCompleteListener {
+        res.addOnCompleteListener {
 
-                if(it.isSuccessful){
-                    println("Done login with correct information")
-                    hidePrograssBsar(ui)
-                    goUserChatList(context)
-                }else{
-                    println("failed login ${it.exception}")
-                    hidePrograssBsar(ui)
-                    makeToast(context)
-                }
+            if (it.isSuccessful) {
+                println("Done login with correct information")
+                hidePrograssBsar(ui)
+                goUserChatList(context)
+            } else {
+                println("failed login ${it.exception}")
+                hidePrograssBsar(ui)
+                makeToast(context)
+            }
 
-         }
+        }
 
     }
+
     fun View.hideKeyboard(context: Context) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
-    private fun makeToast(context: Context){
-       Toast.makeText(context,"please write your information in correct way",Toast.LENGTH_SHORT).show()
+
+    private fun makeToast(context: Context) {
+        Toast.makeText(context, "please write your information in correct way", Toast.LENGTH_SHORT)
+            .show()
     }
 
 
@@ -75,31 +82,34 @@ class LoginActionsListener {
     }
 
 
-         fun goUserChatList(context: Context) {
-             val intent = Intent(context, UsersChatRoomListActivity::class.java)
-             context.startActivity(intent)
+    fun goUserChatList(context: Context) {
+        val intent = Intent(context, UsersChatRoomListActivity::class.java)
+        context.startActivity(intent)
 
 
+    }
 
-     }
-    fun showProgressBar(ui: ActivityLoginScreenBinding){
+    fun showProgressBar(ui: ActivityLoginScreenBinding) {
         ui.progressBarLog.visibility = View.VISIBLE
     }
-    fun hidePrograssBsar(ui: ActivityLoginScreenBinding){
+
+    fun hidePrograssBsar(ui: ActivityLoginScreenBinding) {
         ui.progressBarLog.visibility = View.INVISIBLE
 
     }
+
     fun openSignUp(context: Context, ui: ActivityLoginScreenBinding) {
         ui.btnSignUp.setOnClickListener {
             val intent = Intent(context, SignUpActivity::class.java)
             context.startActivity(intent)
         }
     }
-    fun  checkUser(context: Activity){
-           auth = FirebaseAuth.getInstance()
 
-        if (auth.currentUser !=null){
-            context.startActivity(Intent(context,UsersChatRoomListActivity::class.java))
+    fun checkUser(context: Activity) {
+        auth = FirebaseAuth.getInstance()
+
+        if (auth.currentUser != null) {
+            context.startActivity(Intent(context, UsersChatRoomListActivity::class.java))
             context.finish()
         }
     }

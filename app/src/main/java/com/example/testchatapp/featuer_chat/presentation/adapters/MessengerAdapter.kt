@@ -2,6 +2,7 @@ package com.example.testchatapp.featuer_chat.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.databinding.ItemReciverBinding
 import com.example.testchatapp.databinding.ItemReciverBinding.inflate as reciverInflate
@@ -17,13 +18,14 @@ class MessengerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     private val    SENDER_TYPE  = 1
     private val    RECIVER_TYPE = 2
 
-    private val messegeList = ArrayList<Message>()
+     lateinit var messegeList :MutableLiveData<ArrayList<Message>>
     inner  class ReciverViewHolder(val reciverView:ItemReciverBinding):RecyclerView.ViewHolder(reciverView.root)
    inner class SenderViewHolder(val sendrView : ItemSenderBinding):RecyclerView.ViewHolder(sendrView.root)
 
      private fun checkViewType(position: Int):Boolean{
-         return  messegeList[position].userId == FirebaseAuth.getInstance().uid
+         return  messegeList.value!![position].userId == FirebaseAuth.getInstance().uid
      }
+
     override fun getItemViewType(position: Int): Int {
         return  if(checkViewType(position)){
            SENDER_TYPE
@@ -48,20 +50,22 @@ class MessengerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        with(messegeList[position]){
+        with(messegeList.value!![position]){
             if (holder::class == SenderViewHolder::class){
                 val senderHolder = holder as SenderViewHolder
                     senderHolder.sendrView.msgSender.text = message
+                    senderHolder.sendrView.msgTimeSender.text = messageTime
             }else{
                 val reciverHolder = holder as ReciverViewHolder
                 reciverHolder.reciverView.textReciver.text = message
+                reciverHolder.reciverView.textReciver.text = messageTime
             }
         }
 
     }
 
     override fun getItemCount(): Int {
-       return  messegeList.size
+       return  messegeList.value!!.size
     }
 
 

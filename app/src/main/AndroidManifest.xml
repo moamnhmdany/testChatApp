@@ -23,30 +23,32 @@
             android:name=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".feature_authetication.presentation.activites.sign_up_activity.SignUpActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"/>
         <activity
+
             android:name=".feature_authetication.presentation.activites.login_activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".featuer_chat.presentation.activites.MainActivity"
-            android:exported="true" />
+
     </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

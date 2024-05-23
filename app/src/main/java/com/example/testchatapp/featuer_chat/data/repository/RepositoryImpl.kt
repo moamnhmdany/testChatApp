@@ -8,8 +8,9 @@ import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.repository.ChatRepository
 import com.example.testchatapp.feature_authetication.domain.model.Users
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
 
-class RepositoryImpl : ChatRepository {
+class RepositoryImpl() : ChatRepository {
       val data :DataBaseDao = MyFireBase()
 
     override suspend fun getAllUsers() :Iterable<DataSnapshot>{
@@ -29,5 +30,8 @@ class RepositoryImpl : ChatRepository {
        val data = data.getUserFriendsList()
        return data
    }
+    override suspend fun getMessages(roomId : String, listener: ValueEventListener){
+         data.getMessages(roomId, listener)
+    }
 
 }

@@ -10,7 +10,8 @@ import com.google.firebase.database.ValueEventListener
 interface DataBaseDao {
 
     suspend fun getAllUsers(): Iterable<DataSnapshot>
-    suspend fun saveFriendUser(userId:String,FriendUser: UsersUnfriend)
+    suspend fun saveFriendUser(userId:String,friendUser: UsersUnfriend)
     suspend fun getUserFriendsList():Iterable<DataSnapshot>
     suspend fun sendMessage(roomId: String, msgId: String, msg: Message)
+    suspend fun getMessages(roomId : String, listener: ValueEventListener)
 }
