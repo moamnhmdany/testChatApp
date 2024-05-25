@@ -9,8 +9,6 @@ import kotlinx.coroutines.launch
 
 class AddFriendModel : ViewModel() {
     val singletonClass = UtilsReference
-      // private var getCase:UseCaseGetAllUsers = UseCaseGetAllUsers()
-     //  private var getCase = UtilsReference.useCaseGetAllUsers
 
     fun getUnfriendUsersDataBase(){
       //  var getCase = UtilsReference.useCaseGetAllUsers
@@ -18,8 +16,6 @@ class AddFriendModel : ViewModel() {
             singletonClass.useCaseGetAllUsers.setupUersUnfriendList()
         }
     }
-
-
 
 
 }

@@ -19,10 +19,10 @@ class MyFireBase : DataBaseDao {
 
     private var usersFriendListRef = Firebase.database.reference.child("UserFriends")
 
-    override suspend fun getAllUsers(): Iterable<DataSnapshot> {
-        val snapshot = usersRef.get().await().children
+    override suspend fun getAllUsers(listener: ValueEventListener){
+        val snapshot = usersRef.addValueEventListener(listener)
         println("====================> done get snap shoot from firebase list of users  ")
-        return snapshot
+
     }
 
 

@@ -23,7 +23,6 @@ object UtilsReference {
 
 
     var listUsersUnfriends = ArrayList<UsersUnfriend>()
-    var listUserFriends = ArrayList<UserFriends>()
 
     var  chatRoomListAdapter =  UserRoomChatListAdapter()
     var roomList = ArrayList<UserChatRoom>()
@@ -38,10 +37,8 @@ object UtilsReference {
     var   mutableUsersList = MutableLiveData<ArrayList<Users>>()
 
     var   mutableUsersUnFriendsList = MutableLiveData<ArrayList<UsersUnfriend>>()
-    var   mutableUserFriendsList = MutableLiveData<ArrayList<UserFriends>>()
 
     var unFriendUser = UsersUnfriend()
-    var userFriend = UserFriends()
 
 
     var   chatsFriends = MutableLiveData<ArrayList<UserChats>>()
@@ -59,6 +56,6 @@ object UtilsReference {
     var messagesList = ArrayList<Message>()
     var getMessagesCase = UserMessageCase()
 
-
-
+    var userFriendList = ArrayList<UserFriends>()
+    var mutableUserFriendsList = MutableLiveData<ArrayList<UserFriends>>()
 }

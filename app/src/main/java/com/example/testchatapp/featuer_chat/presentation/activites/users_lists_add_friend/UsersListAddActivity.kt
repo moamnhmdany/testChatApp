@@ -20,7 +20,7 @@ class UsersListAddActivity : AppCompatActivity(), ChatFriend {
         actions.goback(this,ui)
         UtilsReference.interfaceChat = this@UsersListAddActivity
 
-        //goChat()
+
     }
 
 

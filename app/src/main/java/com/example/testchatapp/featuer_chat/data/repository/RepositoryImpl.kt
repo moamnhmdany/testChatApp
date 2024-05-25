@@ -13,8 +13,8 @@ import com.google.firebase.database.ValueEventListener
 class RepositoryImpl() : ChatRepository {
       val data :DataBaseDao = MyFireBase()
 
-    override suspend fun getAllUsers() :Iterable<DataSnapshot>{
-      return  data.getAllUsers()
+    override suspend fun getAllUsers(listener: ValueEventListener){
+      return  data.getAllUsers(listener)
     }
 
     override suspend fun saveFriendUser(userId: String, FriendUser: UsersUnfriend) {
