@@ -13,35 +13,38 @@ import com.example.testchatapp.databinding.ItemSenderBinding.inflate as senderIn
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.google.firebase.auth.FirebaseAuth
 
-class MessengerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val    SENDER_TYPE  = 1
-    private val    RECIVER_TYPE = 2
+    private val SENDER_TYPE = 1
+    private val RECIVER_TYPE = 2
 
-     lateinit var messegeList :MutableLiveData<ArrayList<Message>>
-    inner  class ReciverViewHolder(val reciverView:ItemReciverBinding):RecyclerView.ViewHolder(reciverView.root)
-   inner class SenderViewHolder(val sendrView : ItemSenderBinding):RecyclerView.ViewHolder(sendrView.root)
+    lateinit var messegeList: MutableLiveData<ArrayList<Message>>
 
-     private fun checkViewType(position: Int):Boolean{
-         return  messegeList.value!![position].userId == FirebaseAuth.getInstance().uid
-     }
+    inner class ReciverViewHolder(val reciverView: ItemReciverBinding) :
+        RecyclerView.ViewHolder(reciverView.root)
+
+    inner class SenderViewHolder(val sendrView: ItemSenderBinding) :
+        RecyclerView.ViewHolder(sendrView.root)
+
+    private fun checkViewType(position: Int): Boolean {
+        return messegeList.value!![position].userId == FirebaseAuth.getInstance().uid
+    }
 
     override fun getItemViewType(position: Int): Int {
-        return  if(checkViewType(position)){
-           SENDER_TYPE
-        }
-        else
+        return if (checkViewType(position)) {
+            SENDER_TYPE
+        } else
             RECIVER_TYPE
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        return if (viewType == SENDER_TYPE){
+        return if (viewType == SENDER_TYPE) {
 
             val ly = LayoutInflater.from(parent.context)
             val view = senderInflate(ly)
             SenderViewHolder(view)
-        }else {
+        } else {
             val ly = LayoutInflater.from(parent.context)
             val view = reciverInflate(ly)
             ReciverViewHolder(view)
@@ -50,22 +53,22 @@ class MessengerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        with(messegeList.value!![position]){
-            if (holder::class == SenderViewHolder::class){
+        with(messegeList.value!![position]) {
+            if (holder::class == SenderViewHolder::class) {
                 val senderHolder = holder as SenderViewHolder
-                    senderHolder.sendrView.msgSender.text = message
-                    senderHolder.sendrView.msgTimeSender.text = messageTime
-            }else{
+                senderHolder.sendrView.msgSender.text = message
+                senderHolder.sendrView.msgTimeSender.text = messageTime
+            } else {
                 val reciverHolder = holder as ReciverViewHolder
-                reciverHolder.reciverView.textReciver.text = message
-                reciverHolder.reciverView.textReciver.text = messageTime
+                reciverHolder.reciverView.textReceiverMsg.text = message
+                reciverHolder.reciverView.receiverTimeMsg.text = messageTime
             }
         }
 
     }
 
     override fun getItemCount(): Int {
-       return  messegeList.value!!.size
+        return messegeList.value!!.size
     }
 
 

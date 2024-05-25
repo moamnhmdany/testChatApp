@@ -8,6 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
+import com.google.android.material.timepicker.TimeFormat
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class ChatMessangerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatMessangerPageBinding
@@ -21,6 +25,11 @@ class ChatMessangerActivity : AppCompatActivity() {
         val ui = setting.settingChatMessangerPage(this, this)
         action.goToMain(this, ui)
         action.sendMessage(ui,intent)
+       val time = DateTimeFormatter.ofPattern(
+            "hh:mm:ss a", Locale("en")
+        ).format(LocalTime.now())
+        println("--------------------the time is =${time}")
+
         action.observeMessageList(intent,this,ui,this)
     }
 

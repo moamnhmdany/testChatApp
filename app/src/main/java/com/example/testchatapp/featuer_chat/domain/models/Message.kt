@@ -7,4 +7,5 @@ class Message {
     var receiverId = ""
     var message = ""
     var messageTime = ""
+
 }

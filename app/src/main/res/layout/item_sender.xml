@@ -2,19 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
@@ -23,22 +19,13 @@
             android:background="@drawable/bg_sender"
             android:maxWidth="310dp"
             android:maxHeight="400dp"
-            android:minHeight="30dp"
-            android:layout_alignParentEnd="true">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guid_line_sender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="16dp" />
+            android:minHeight="30dp">
 
             <TextView
                 android:id="@+id/msg_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="3dp"
                 android:inputType="textLongMessage|textMultiLine"
@@ -55,16 +42,27 @@
                 android:id="@+id/msg_time_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/msg_time_sender"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
+                android:text="@string/msg_time_sender"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guid_line_sender" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guid_line_sender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="17dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
+
+    <data>
+
+    </data>
 </layout>

@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
+import java.time.LocalTime
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
@@ -52,15 +53,24 @@ class ChatMessangerlistenre {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+
+                    UtilsReference.mutableMessageList.value?.clear()
+
                     snapshot.children.forEach {
+
                         println("----------------- the msg id = ${it.key.toString()}")
                         val message = it.getValue(Message::class.java)!!
                         UtilsReference.messagesList.add(message)
                     }
                     UtilsReference.mutableMessageList.postValue(UtilsReference.messagesList)
+                    UtilsReference.mutableMessageList.value?.sortBy{
+                        it.messageTime
+                    }
+                    println("----------------------> done sort messages")
                 } else {
                     println("--------------> snapshot data not found")
                 }
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -98,6 +108,7 @@ class ChatMessangerlistenre {
         UtilsReference.msg.userId = unFriend.userId
         UtilsReference.msg.receiverId = unFriend.userUnfriendId
         UtilsReference.msg.messageTime = getTime()
+
     }
 
     private fun setupRoomId(unFriend: UsersUnfriend) {
@@ -106,7 +117,7 @@ class ChatMessangerlistenre {
     }
 
     private fun getTime(): String =
-        SimpleDateFormat("hh:mm:ss a", Locale.getDefault()).format(Date())
+        SimpleDateFormat("hh:mm:ss a", Locale("ar")).format(Date())
 
     private fun getUserUnfriendData(intent: Intent): UsersUnfriend {
         val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -121,13 +132,13 @@ class ChatMessangerlistenre {
         return userData
     }
 
-    private fun sort(senderId: String, reciverId: String): String {
-        if (senderId.compareTo(reciverId) <= 0) {
+    private fun sort(senderId: String, receiverId: String): String {
+        if (senderId.compareTo(receiverId) <= 0) {
             println("-------------> done run sort")
-            return senderId + reciverId
+            return senderId + receiverId
         } else {
             println("-------------> done run sort ")
-            return reciverId + senderId
+            return receiverId + senderId
         }
     }
 
