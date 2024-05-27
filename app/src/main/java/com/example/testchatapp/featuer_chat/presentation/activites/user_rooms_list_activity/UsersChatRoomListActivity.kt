@@ -16,12 +16,13 @@ class UsersChatRoomListActivity : AppCompatActivity() {
          ui = setting.settingUserList(this, this)
 
         actions.openAddFriendListScreen(ui,this)
-
         drawerLayout =  actions.setupNavSideBar(ui,this)
         actions.openDrawer(ui, drawerLayout)
         actions.menuListener(ui,this)
+
         onBackPressedDispatcher.addCallback(this,actions.onBackPressListener(drawerLayout))
         actions.observeUsers(this,ui,this)
+        actions.goTOMessagesActivity(this)
     }
 
 

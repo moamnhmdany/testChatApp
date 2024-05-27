@@ -11,7 +11,6 @@ class AddFriendModel : ViewModel() {
     val singletonClass = UtilsReference
 
     fun getUnfriendUsersDataBase(){
-      //  var getCase = UtilsReference.useCaseGetAllUsers
         viewModelScope.launch(Dispatchers.IO) {
             singletonClass.useCaseGetAllUsers.setupUersUnfriendList()
         }

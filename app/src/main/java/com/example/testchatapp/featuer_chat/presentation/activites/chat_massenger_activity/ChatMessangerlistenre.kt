@@ -102,13 +102,11 @@ class ChatMessangerlistenre {
     }
 
     private fun setupMessage(msg: String, unFriend: UsersUnfriend) {
-        //val time =  Calendar.getInstance().time.toString()
         UtilsReference.msg.message = msg
         UtilsReference.msg.messageId = UUID.randomUUID().toString()
         UtilsReference.msg.userId = unFriend.userId
         UtilsReference.msg.receiverId = unFriend.userUnfriendId
         UtilsReference.msg.messageTime = getTime()
-
     }
 
     private fun setupRoomId(unFriend: UsersUnfriend) {

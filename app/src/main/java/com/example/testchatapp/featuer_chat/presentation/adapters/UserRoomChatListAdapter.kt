@@ -2,6 +2,7 @@ package com.example.testchatapp.featuer_chat.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.marginBottom
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.databinding.UserRoomShapBinding
@@ -13,6 +14,7 @@ class UserRoomChatListAdapter(): RecyclerView.Adapter<UserRoomChatListAdapter.My
 
     inner class MyViewHolder(val myView : UserRoomShapBinding):
         RecyclerView.ViewHolder(myView.root){
+
 
         }
 
@@ -32,6 +34,9 @@ class UserRoomChatListAdapter(): RecyclerView.Adapter<UserRoomChatListAdapter.My
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         with(holder){
             with(roomList.value!![position]){
+                holder.myView.rootLy.setOnClickListener {
+
+                }
                  holder.myView.userName.text = this.userName
                  holder.myView.lastMsg.text = this.userLastMsg
             }

@@ -3,6 +3,7 @@ package com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_l
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -13,9 +14,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
+import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -45,10 +48,22 @@ class UserRommListListenre {
     private fun recycleViewSetting(context: Context, ui: ActivityUsersChatListBinding) {
         layoutManager = LinearLayoutManager(context)
         ui.usersChatRoomListRecyclerview.layoutManager = layoutManager
-
+        ui.usersChatRoomListRecyclerview.addItemDecoration(myItemDecoration())
         UtilsReference.chatRoomListAdapter.roomList = UtilsReference.userRoomList
        ui.usersChatRoomListRecyclerview.adapter = UtilsReference.chatRoomListAdapter
 
+    }
+
+    private fun myItemDecoration() = object : ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            super.getItemOffsets(outRect, view, parent, state)
+            outRect.bottom = 10
+        }
     }
 
     fun openAddFriendListScreen(ui: ActivityUsersChatListBinding, context:Context) {
@@ -116,6 +131,11 @@ class UserRommListListenre {
 
         }
         return  listener
+    }
+
+     fun goTOMessagesActivity(context: Context){
+        val intent = Intent(context,ChatMessangerActivity::class.java)
+        context.startActivity(intent)
     }
 companion object{
     fun showProgrecceBar(ui: ActivityUsersChatListBinding){

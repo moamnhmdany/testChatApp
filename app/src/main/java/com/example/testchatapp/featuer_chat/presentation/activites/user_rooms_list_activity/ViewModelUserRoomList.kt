@@ -17,18 +17,16 @@ class ViewModelUserRoomList : ViewModel() {
     private val getCase = UseCaseGetAllUsers()
     private val userRoomsListCase = UsersFriendCase()
 
-    @OptIn(DelicateCoroutinesApi::class)
      fun setRoomList() {
-
-
         viewModelScope.launch(Dispatchers.IO) {
             val data = userRoomsListCase.getUserFriendsList()
 
             data.forEach {
                  val myData = it.getValue(UsersUnfriend::class.java)
                       val userRoom = UserChatRoom()
-                        userRoom.userName= myData!!.userUnfriendUserName
-                     UtilsReference.roomList.add(userRoom)
+                        userRoom.id = myData!!.userUnfriendId
+                        userRoom.userName= myData.userUnfriendUserName
+                        UtilsReference.roomList.add(userRoom)
                 println("------------->>>>>----${myData.userUnfriendUserName}")
 
             }
