@@ -8,7 +8,6 @@ import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.UUID
 
 class ChatMessageViewModel() : ViewModel() {
 
@@ -17,7 +16,7 @@ class ChatMessageViewModel() : ViewModel() {
     fun sendMsg() {
         viewModelScope.launch(Dispatchers.IO) {
             UtilsReference.sendCase.send(
-                UtilsReference.roomId, UUID.randomUUID().toString(), UtilsReference.msg
+                UtilsReference.roomId, UtilsReference.msg.messageId, UtilsReference.msg
             )
         }
     }

@@ -42,10 +42,10 @@ class MyFireBase : DataBaseDao {
         }
     }
 
-    override suspend fun getUserFriendsList(): Iterable<DataSnapshot> {
+    override suspend fun getUserFriendsList(listener: ValueEventListener){
         val snapshot = usersRef.child(FirebaseAuth.getInstance().uid.toString())
-            .child("UserFriends").get().await().children
-        return snapshot
+            .child("UserFriends").addValueEventListener(listener)
+
     }
 
 

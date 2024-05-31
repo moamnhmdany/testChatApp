@@ -3,14 +3,19 @@ package com.example.testchatapp.featuer_chat.presentation.activites.chat_masseng
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
 import com.example.testchatapp.featuer_chat.domain.models.Message
+import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity
+import com.example.testchatapp.featuer_chat.presentation.adapters.MessengerAdapter
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -35,15 +40,30 @@ class ChatMessangerlistenre {
 
     private fun setupRecycleView(context: Context, ui: ActivityChatMessangerPageBinding) {
         val layoutManager = LinearLayoutManager(context)
+
         ui.chatMessagesRecycleView.layoutManager = layoutManager
         UtilsReference.messageChatAdapter.messegeList = UtilsReference.mutableMessageList
         ui.chatMessagesRecycleView.adapter = UtilsReference.messageChatAdapter
+
+        val itemCount = (ui.chatMessagesRecycleView.adapter as MessengerAdapter).itemCount
+        layoutManager.scrollToPosition(itemCount-1)
         println("-----------------> setupRecycleView done")
     }
 
     private fun sendListener(intent: Intent) {
-        val unFriend = getUserUnfriendData(intent)
-        setupRoomId(unFriend)
+
+
+         val userData = getIntentData(intent)
+        if (userData is UserChatRoom) {
+            UtilsReference.unFriendUser.userUnfriendId = userData.id
+            UtilsReference.unFriendUser.userId = FirebaseAuth.getInstance().uid.toString()
+            UtilsReference.unFriendUser.userUnfriendUserName = userData.userName
+        }else{
+            val unFriend = getUserUnfriendData(intent)
+            UtilsReference.unFriendUser = unFriend
+        }
+
+        setupRoomId(UtilsReference.unFriendUser)
         val listener = setupListener()
         UtilsReference.chatMessageViewModel.getMessages(UtilsReference.roomId, listener)
         println("-----------> sendListener is done running")
@@ -52,9 +72,10 @@ class ChatMessangerlistenre {
     private fun setupListener(): ValueEventListener {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                UtilsReference.mutableMessageList.value?.clear()
                 if (snapshot.exists()) {
 
-                    UtilsReference.mutableMessageList.value?.clear()
+                    updateMessageId(snapshot)
 
                     snapshot.children.forEach {
 
@@ -62,10 +83,9 @@ class ChatMessangerlistenre {
                         val message = it.getValue(Message::class.java)!!
                         UtilsReference.messagesList.add(message)
                     }
+
                     UtilsReference.mutableMessageList.postValue(UtilsReference.messagesList)
-                    UtilsReference.mutableMessageList.value?.sortBy{
-                        it.messageTime
-                    }
+
                     println("----------------------> done sort messages")
                 } else {
                     println("--------------> snapshot data not found")
@@ -83,9 +103,22 @@ class ChatMessangerlistenre {
         return listener
 
     }
+    private fun updateMessageId(snapshot: DataSnapshot){
+        UtilsReference.msg.messageId =
+            snapshot.children.last().getValue(Message::class.java)!!.messageId
+    }
 
     fun sendMessage(ui: ActivityChatMessangerPageBinding, intent: Intent) {
-        val unFriend = getUserUnfriendData(intent)
+        val userData = getIntentData(intent)
+        if (userData is UserChatRoom) {
+            UtilsReference.unFriendUser.userUnfriendId = userData.id
+            UtilsReference.unFriendUser.userId = FirebaseAuth.getInstance().uid.toString()
+            UtilsReference.unFriendUser.userUnfriendUserName = userData.userName
+        }else{
+            val unFriend = getUserUnfriendData(intent)
+            UtilsReference.unFriendUser = unFriend
+        }
+        val unFriend = UtilsReference.unFriendUser
 
         ui.btnSendMsg.setOnClickListener {
             val msg = ui.chatMsgTextBox.text.toString()
@@ -95,6 +128,7 @@ class ChatMessangerlistenre {
             UtilsReference.chatMessageViewModel.sendMsg()
             clearText(ui)
         }
+        println("------------------------> sendMessage is done running")
     }
 
     private fun clearText(ui: ActivityChatMessangerPageBinding) {
@@ -103,12 +137,17 @@ class ChatMessangerlistenre {
 
     private fun setupMessage(msg: String, unFriend: UsersUnfriend) {
         UtilsReference.msg.message = msg
-        UtilsReference.msg.messageId = UUID.randomUUID().toString()
+        UtilsReference.msg.messageId = getMessageId()
         UtilsReference.msg.userId = unFriend.userId
         UtilsReference.msg.receiverId = unFriend.userUnfriendId
         UtilsReference.msg.messageTime = getTime()
     }
 
+    private fun getMessageId():String{
+        UtilsReference.messageId =  (UtilsReference.messageId.toInt() + 1).toString()
+        println("-------------message id is = ${UtilsReference.messageId}")
+        return UtilsReference.messageId
+    }
     private fun setupRoomId(unFriend: UsersUnfriend) {
         UtilsReference.roomId = sort(unFriend.userId, unFriend.userUnfriendId)
         println("----------------> done running setupRoomId ${UtilsReference.roomId}")
@@ -118,6 +157,7 @@ class ChatMessangerlistenre {
         SimpleDateFormat("hh:mm:ss a", Locale("ar")).format(Date())
 
     private fun getUserUnfriendData(intent: Intent): UsersUnfriend {
+
         val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("userDataFriend", UsersUnfriend::class.java)
 
@@ -128,6 +168,29 @@ class ChatMessangerlistenre {
         println("-----------------" + data)
         println("------------------------> getUserUnfriendData ")
         return userData
+    }
+    private fun getUserRoomData(intent: Intent): UserChatRoom {
+
+        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("userRoomMate", UserChatRoom::class.java)
+
+        } else {
+            intent.getParcelableExtra<UserChatRoom>("userRoomMate")
+        }
+        val data = userData!!.userName
+        println("-----------------" + data)
+        println("------------------------> getUserUnfriendData ")
+        return userData
+    }
+
+    fun getIntentData(intent: Intent):Any{
+        val check = intent.getIntExtra("checkClass",0)
+
+       if(check == 1)
+           return getUserRoomData(intent)
+        else
+        return getUserUnfriendData(intent)
+
     }
 
     private fun sort(senderId: String, receiverId: String): String {

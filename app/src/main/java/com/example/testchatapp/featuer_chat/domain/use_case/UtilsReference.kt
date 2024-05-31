@@ -8,6 +8,7 @@ import com.example.testchatapp.featuer_chat.domain.models.UserChats
 import com.example.testchatapp.featuer_chat.domain.models.UserFriends
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessageViewModel
+import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UserRoomIntent
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.ViewModelUserRoomList
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.AddFriendModel
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
@@ -31,6 +32,7 @@ object UtilsReference {
     var addFriendListAdapter =  AddFriendAdapter()
 
     lateinit var interfaceChat : UsersListAddActivity
+    lateinit var interfaceChatRoom : UserRoomIntent
 
     var messageChatAdapter =  MessengerAdapter()
 
@@ -49,13 +51,13 @@ object UtilsReference {
     var userFriends = UsersFriendCase()
 
     var msg = Message()
+    var messageId = "0"
     var roomId = ""
     var sendCase = SendMessageCase()
     var chatMessageViewModel = ChatMessageViewModel()
     var mutableMessageList = MutableLiveData<ArrayList<Message>>()
     var messagesList = ArrayList<Message>()
     var getMessagesCase = UserMessageCase()
-
     var userFriendList = ArrayList<UserFriends>()
     var mutableUserFriendsList = MutableLiveData<ArrayList<UserFriends>>()
 }

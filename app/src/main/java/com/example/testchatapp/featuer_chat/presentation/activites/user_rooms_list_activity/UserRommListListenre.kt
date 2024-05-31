@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
+import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
@@ -31,16 +32,19 @@ class UserRommListListenre {
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
 
-
-     fun observeUsers(context: Context, ui: ActivityUsersChatListBinding,lifecycleOwner: LifecycleOwner) {
+    fun observeUsers(
+        context: Context,
+        ui: ActivityUsersChatListBinding,
+        lifecycleOwner: LifecycleOwner
+    ) {
         UtilsReference.viewModelRoomsList.setRoomList()
 
 
-         UtilsReference.userRoomList.observe(lifecycleOwner, Observer {
-             recycleViewSetting(context, ui)
+        UtilsReference.userRoomList.observe(lifecycleOwner, Observer {
+            recycleViewSetting(context, ui)
 
-         })
-         UtilsReference.roomList.clear()
+        })
+        UtilsReference.roomList.clear()
 
 
     }
@@ -50,7 +54,7 @@ class UserRommListListenre {
         ui.usersChatRoomListRecyclerview.layoutManager = layoutManager
         ui.usersChatRoomListRecyclerview.addItemDecoration(myItemDecoration())
         UtilsReference.chatRoomListAdapter.roomList = UtilsReference.userRoomList
-       ui.usersChatRoomListRecyclerview.adapter = UtilsReference.chatRoomListAdapter
+        ui.usersChatRoomListRecyclerview.adapter = UtilsReference.chatRoomListAdapter
 
     }
 
@@ -66,7 +70,7 @@ class UserRommListListenre {
         }
     }
 
-    fun openAddFriendListScreen(ui: ActivityUsersChatListBinding, context:Context) {
+    fun openAddFriendListScreen(ui: ActivityUsersChatListBinding, context: Context) {
 
         ui.btnAddFriend.setOnClickListener {
             val intent = Intent(context, UsersListAddActivity::class.java)
@@ -75,54 +79,66 @@ class UserRommListListenre {
         }
     }
 
-    fun setupNavSideBar(ui: ActivityUsersChatListBinding,activity: Activity):DrawerLayout{
+    fun setupNavSideBar(ui: ActivityUsersChatListBinding, activity: Activity): DrawerLayout {
         val drawer_layout = ui.drawerLayout
         val toggle = ActionBarDrawerToggle(
-            activity, drawer_layout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            activity,
+            drawer_layout,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
         drawer_layout.addDrawerListener(toggle)
 
         toggle.syncState()
         return drawer_layout
     }
-    fun menuListener(ui: ActivityUsersChatListBinding,context: Context){
 
-        ui.navView.setNavigationItemSelectedListener{
+    fun menuListener(ui: ActivityUsersChatListBinding, context: Context) {
+
+        ui.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.myProfile -> {
                     Toast.makeText(context, "My Profile", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 R.id.people -> {
                     Toast.makeText(context, "People", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 R.id.log_out -> {
                     logOut()
                     goToLoginActivity(context)
                     Toast.makeText(context, "done log out", Toast.LENGTH_SHORT).show()
                     true
                 }
+
                 else -> {
                     false
                 }
+            }
         }
-     }
     }
-    fun openDrawer(ui: ActivityUsersChatListBinding,drawerLayout: DrawerLayout){
+
+    fun openDrawer(ui: ActivityUsersChatListBinding, drawerLayout: DrawerLayout) {
         ui.btnOpenDrawer.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
     }
-    private fun logOut(){
+
+    private fun logOut() {
         FirebaseAuth.getInstance().signOut()
 
     }
-    private fun goToLoginActivity(context: Context){
-        val intent = Intent(context,LoginActivity::class.java)
+
+    private fun goToLoginActivity(context: Context) {
+        val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
     }
-    fun onBackPressListener(drawerLayout:DrawerLayout):OnBackPressedCallback{
-        val listener = object : OnBackPressedCallback(true){
+
+    fun onBackPressListener(drawerLayout: DrawerLayout): OnBackPressedCallback {
+        val listener = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START)
@@ -130,23 +146,27 @@ class UserRommListListenre {
             }
 
         }
-        return  listener
+        return listener
     }
 
-     fun goTOMessagesActivity(context: Context){
-        val intent = Intent(context,ChatMessangerActivity::class.java)
+    fun goTOMessagesActivity(context: Context, user: UserChatRoom) {
+        val intent = Intent(context, ChatMessangerActivity::class.java)
+        intent.putExtra("userRoomMate",user)
+        intent.putExtra("checkClass",1)
         context.startActivity(intent)
     }
-companion object{
-    fun showProgrecceBar(ui: ActivityUsersChatListBinding){
-        ui.usersListProgressBar.visibility = View.VISIBLE
-    }
-    fun hideProgrecceBar(ui: ActivityUsersChatListBinding){
-        ui.usersListProgressBar.visibility = View.INVISIBLE
+
+    companion object {
+        fun showProgrecceBar(ui: ActivityUsersChatListBinding) {
+            ui.usersListProgressBar.visibility = View.VISIBLE
+        }
+
+        fun hideProgrecceBar(ui: ActivityUsersChatListBinding) {
+            ui.usersListProgressBar.visibility = View.INVISIBLE
+
+        }
 
     }
-
-}
 
 }
 

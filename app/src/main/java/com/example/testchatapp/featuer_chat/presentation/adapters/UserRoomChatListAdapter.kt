@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.databinding.UserRoomShapBinding
 import com.example.testchatapp.databinding.UserRoomShapBinding.inflate
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
+import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 
 class UserRoomChatListAdapter(): RecyclerView.Adapter<UserRoomChatListAdapter.MyViewHolder>() {
       lateinit var roomList : MutableLiveData<ArrayList<UserChatRoom>>
@@ -35,7 +36,7 @@ class UserRoomChatListAdapter(): RecyclerView.Adapter<UserRoomChatListAdapter.My
         with(holder){
             with(roomList.value!![position]){
                 holder.myView.rootLy.setOnClickListener {
-
+                 UtilsReference.interfaceChatRoom.goChat(this)
                 }
                  holder.myView.userName.text = this.userName
                  holder.myView.lastMsg.text = this.userLastMsg

@@ -15,7 +15,6 @@
             android:id="@+id/top_bar_chat_msg"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="40dp"
             android:layoutDirection="ltr"
             android:orientation="horizontal">
 
@@ -53,27 +52,34 @@
 
         </LinearLayout>
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_messages_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@id/top_bar_chat_msg"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            />
+
         <LinearLayout
             android:id="@+id/ly_bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/chat_messages_recycle_view"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
             android:gravity="center"
+            android:layout_alignParentBottom="true"
             android:layoutDirection="ltr"
             android:orientation="horizontal"
-
+            android:layout_marginBottom="10dp"
             >
 
             <EditText
                 android:id="@+id/chat_msg_textBox"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center"
                 android:autofillHints="name"
                 android:background="@drawable/text_box_shap_bg_shap"
-                android:gravity="bottom|center|start"
                 android:hint="@string/hint_msg_box"
                 android:inputType="textMultiLine"
                 android:paddingStart="20sp"
@@ -85,7 +91,6 @@
                 android:id="@+id/btn_mic"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_gravity="start|center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/mic_button_shap"
@@ -99,7 +104,6 @@
                 android:id="@+id/btn_send_msg"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_gravity="end|center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/button_send_shap"
@@ -110,15 +114,6 @@
                 android:src="@drawable/send_icon" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chat_messages_recycle_view"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_below="@id/top_bar_chat_msg"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp" />
     </RelativeLayout>
 
     <data>

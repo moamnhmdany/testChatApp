@@ -21,8 +21,6 @@ class AddFriendAdapter() : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>()
 
     inner class MyViewHolder(val MyView: UserItemAddFriendBinding) :
         RecyclerView.ViewHolder(MyView.root) {
-
-
         fun getMyPosition(): Int {
             return adapterPosition
         }

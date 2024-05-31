@@ -25,10 +25,10 @@ class RepositoryImpl() : ChatRepository {
         data.sendMessage(roomId,msgId,msg)
     }
 
-    override suspend fun getUserFriendsList():Iterable<DataSnapshot>{
+    override suspend fun getUserFriendsList(listener: ValueEventListener){
 
-       val data = data.getUserFriendsList()
-       return data
+       data.getUserFriendsList(listener)
+
    }
     override suspend fun getMessages(roomId : String, listener: ValueEventListener){
          data.getMessages(roomId, listener)

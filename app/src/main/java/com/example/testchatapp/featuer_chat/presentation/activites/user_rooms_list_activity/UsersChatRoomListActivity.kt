@@ -4,13 +4,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
+import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
+import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
-class UsersChatRoomListActivity : AppCompatActivity() {
+class UsersChatRoomListActivity : AppCompatActivity(),UserRoomIntent {
     private val setting = Utiles()
     private val actions = UserRommListListenre()
     lateinit var drawerLayout : DrawerLayout
     lateinit var ui : ActivityUsersChatListBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
          ui = setting.settingUserList(this, this)
@@ -22,7 +25,12 @@ class UsersChatRoomListActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this,actions.onBackPressListener(drawerLayout))
         actions.observeUsers(this,ui,this)
-        actions.goTOMessagesActivity(this)
+        UtilsReference.interfaceChatRoom = this@UsersChatRoomListActivity
+    }
+
+    override fun goChat(user: UserChatRoom) {
+        actions.goTOMessagesActivity(this,user)
+
     }
 
 

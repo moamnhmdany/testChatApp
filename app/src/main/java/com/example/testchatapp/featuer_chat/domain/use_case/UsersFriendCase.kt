@@ -4,6 +4,7 @@ import com.example.testchatapp.featuer_chat.data.repository.RepositoryImpl
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.repository.ChatRepository
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
 
 class UsersFriendCase {
        val repo : ChatRepository = RepositoryImpl()
@@ -13,7 +14,7 @@ class UsersFriendCase {
             repo.saveFriendUser(userId, FriendUser )
         }
 
-    suspend fun getUserFriendsList():Iterable<DataSnapshot>{
-        return  repo.getUserFriendsList()
+    suspend fun getUserFriendsList(listener: ValueEventListener){
+         repo.getUserFriendsList(listener)
     }
 }

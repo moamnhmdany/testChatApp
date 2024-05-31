@@ -65,7 +65,6 @@ class Utiles() {
         bindingChatMessangrePage = inflateChatMessangerPage(li)
         val view = bindingChatMessangrePage.root
         activity.setContentView(view)
-        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
         return  bindingChatMessangrePage
     }
 

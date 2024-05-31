@@ -24,8 +24,8 @@
         <activity
             android:name=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity"
             android:exported="true"
-            android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:theme="@style/myTheme"
+           />
         <activity
             android:name=".featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity"
             android:exported="true"

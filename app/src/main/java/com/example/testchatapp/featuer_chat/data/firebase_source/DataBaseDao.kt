@@ -11,7 +11,7 @@ interface DataBaseDao {
 
     suspend fun getAllUsers(listener: ValueEventListener)
     suspend fun saveFriendUser(userId:String,friendUser: UsersUnfriend)
-    suspend fun getUserFriendsList():Iterable<DataSnapshot>
+    suspend fun getUserFriendsList(listener: ValueEventListener)
     suspend fun sendMessage(roomId: String, msgId: String, msg: Message)
     suspend fun getMessages(roomId : String, listener: ValueEventListener)
 }
