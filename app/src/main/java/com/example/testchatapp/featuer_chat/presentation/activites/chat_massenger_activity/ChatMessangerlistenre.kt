@@ -104,7 +104,7 @@ class ChatMessangerlistenre {
 
     }
     private fun updateMessageId(snapshot: DataSnapshot){
-        UtilsReference.msg.messageId =
+        UtilsReference.messageId =
             snapshot.children.last().getValue(Message::class.java)!!.messageId
     }
 
