@@ -49,8 +49,9 @@ class AddFriendAdapter() : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>()
                     println("==================$userUnfriendUserName")
 
                     save(this.userId, this)
-
+                    UtilsReference.mutableMessageList.value?.clear()
                     UtilsReference.interfaceChat.openChat(this)
+
                     println("==-=-=-=--=-=-=-==-=-=-=-== ${this.userUnfriendUserName}")
                 }
             }
