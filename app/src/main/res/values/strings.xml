@@ -37,6 +37,12 @@
     <string name="logOut">log out</string>
     <string name="last_message">last message</string>
     <string name="moamn_ali">moamn ali</string>
+    <string name="add_fab_content_description">add image profile</string>
+    <string name="have_you">Have a favorite selfie? Upload it now</string>
+    <string name="pick">pick a profile picture</string>
+    <string name="next">next</string>
+    <string name="skip"><u>Skip for now</u>.</string>
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>

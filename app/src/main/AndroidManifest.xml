@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-
         android:name=".feature_authetication.presentation.BaseApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,46 +13,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestChatApp"
         android:windowSoftInputMode="adjustPan"
-        tools:targetApi="31"
-        >
+        tools:targetApi="31">
+
+        <activity
+            android:name=".feature_authetication.presentation.activites.MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity"
             android:exported="true"
-            android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            />
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar" />
         <activity
             android:name=".featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity"
             android:exported="true"
-            android:theme="@style/myTheme"
-           />
+            android:theme="@style/myTheme" />
         <activity
             android:name=".featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".feature_authetication.presentation.activites.sign_up_activity.SignUpActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-
             android:name=".feature_authetication.presentation.activites.login_activity.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.TestChatApp.noActionCustomBar">
-
-            <intent-filter>
-
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-
-            </intent-filter>
-
-        </activity>
-
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

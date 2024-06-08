@@ -30,6 +30,9 @@
     <style name="myStyle">
         <item name="colorAccent">@color/signTextColor</item> <!-- Whatever color you want-->
     </style>
-
+    <style name="circle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
 </resources>

@@ -7,5 +7,6 @@ class Message {
     var receiverId = ""
     var message = ""
     var messageTime = ""
+    var imgUrlMessage = ""
 
 }

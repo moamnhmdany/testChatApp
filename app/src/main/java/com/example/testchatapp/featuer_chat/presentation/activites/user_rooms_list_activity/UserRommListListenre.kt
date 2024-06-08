@@ -17,10 +17,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
+import com.example.testchatapp.databinding.FragmentLoginBinding
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
+import com.example.testchatapp.feature_authetication.presentation.activites.MainActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
@@ -133,7 +135,8 @@ class UserRommListListenre {
     }
 
     private fun goToLoginActivity(context: Context) {
-        val intent = Intent(context, LoginActivity::class.java)
+
+        val intent = Intent(context, MainActivity::class.java)
         context.startActivity(intent)
     }
 

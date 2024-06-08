@@ -3,6 +3,7 @@ package com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_l
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
@@ -26,6 +27,7 @@ class UsersChatRoomListActivity : AppCompatActivity(),UserRoomIntent {
         onBackPressedDispatcher.addCallback(this,actions.onBackPressListener(drawerLayout))
         actions.observeUsers(this,ui,this)
         UtilsReference.interfaceChatRoom = this@UsersChatRoomListActivity
+
     }
 
     override fun goChat(user: UserChatRoom) {

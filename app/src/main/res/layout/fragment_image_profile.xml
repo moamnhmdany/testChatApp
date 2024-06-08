@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature_authetication.presentation.fragments.image_profile.ImageProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_root_ly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/tv_pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/pick"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+        <TextView
+            android:id="@+id/tv_have_you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/have_you"
+            android:textColor="@color/pick_gray"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_pick"
+            />
+
+        <RelativeLayout
+            android:id="@+id/img_ly_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_have_you">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shap_image_view"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:background="@color/grayTextColor"
+                android:src="@drawable/pesrson_shap"
+                app:shapeAppearanceOverlay="@style/circle"
+                />
+            <RelativeLayout
+                android:id="@+id/fab_ly"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_alignBottom="@id/shap_image_view"
+                android:layout_marginStart="170dp"
+                android:background="@drawable/add_fab_shap_ly">
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/add_fab_content_description"
+                    android:src="@drawable/add_chats_friend_icon"
+                    app:fab_colorNormal="@color/signTextColor" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/next_btn_shap"
+            android:text="@string/next"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_ly_profile"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/skip"
+            android:textColor="@color/pick_gray"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_next"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

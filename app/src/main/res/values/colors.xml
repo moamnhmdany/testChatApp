@@ -5,12 +5,16 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="signTextColor">#52B6BB</color>
     <color name="grayTextColor">#CDCDCD</color>
     <color name="lighterSignTextColor">#9CD8DB</color>
     <color name="light_black">#1D1C1C</color>
     <color name="black_lighter">#3C3C3C</color>
     <color name="white_lighter">#FAFAFA</color>
+    <color name="pick_gray">#7E7B7B</color>
+    <color name="next_button_color">#000000</color>
+    <color name="next_bg">#52B6BB</color>
+    <color name="next_text_color">#000000</color>
 
 </resources>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature_authetication.presentation.fragments.login_fragment.LoginFragment">
+
+    <RelativeLayout
+        android:id="@+id/root_ly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/leaves_pic"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/green_leaves"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/signIn"
+
+            />
+        <TextView
+            android:id="@+id/SignTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="@string/signIn"
+            android:textColor="@color/signTextColor"
+            android:textSize="50sp"
+            android:layout_below="@id/leaves_pic"
+            />
+
+        <EditText
+            android:id="@+id/email_textBox"
+            android:layout_width="300dp"
+            android:layout_height="60sp"
+            android:layout_below="@id/SignTextView"
+            android:layout_centerInParent="true"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/text_box_shap_bg_shap"
+            android:hint="@string/hint_email_box"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20sp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/signTextColor" />
+
+        <EditText
+            android:id="@+id/password_textBox"
+            android:layout_width="300dp"
+            android:layout_height="60sp"
+            android:layout_below="@id/email_textBox"
+            android:hint="@string/hint_password_box"
+            android:paddingStart="20sp"
+            android:paddingEnd="20dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/text_box_shap_bg_shap"
+            android:layout_centerInParent="true"
+            android:autofillHints="password"
+            />
+        <LinearLayout
+            android:id="@+id/ly"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/password_textBox"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            >
+
+            <RadioButton
+                android:layout_width="130sp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/rememberMe"
+                android:textColor="@color/grayTextColor" />
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="48dp"
+                android:maxHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:text="@string/forgetPass"
+                android:textColor="@drawable/forget_shap" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSingIn"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/ly"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_login_shap"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:text="@string/signIn"
+            android:textColor="@color/white"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+        <ProgressBar
+            android:id="@+id/progress_bar_log"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:theme="@style/Theme.TestChatApp.WhiteAccent"
+
+            />
+        <TextView
+            android:id="@+id/dont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSingIn"
+            android:text="@string/dont_have"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/btn_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_below="@id/dont"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:text="@string/sign_up"
+            android:textColor="@drawable/sign_up_text_shap"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/or_image"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_below="@id/btn_sign_up"
+            android:layout_marginTop="15dp"
+            android:text="@string/or"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:background="@drawable/image_line_shap"
+            android:visibility="visible" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/or_image"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/twitter"
+                android:layout_margin="5dp"
+
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/google_green"
+                android:layout_margin="5dp"/>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/facebook_green"
+                android:layout_margin="5dp"
+
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</FrameLayout>

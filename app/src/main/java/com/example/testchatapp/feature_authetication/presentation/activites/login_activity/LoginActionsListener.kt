@@ -11,20 +11,26 @@ import com.google.firebase.auth.FirebaseAuth
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.example.testchatapp.databinding.FragmentImageProfileBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
+import com.example.testchatapp.feature_authetication.presentation.fragments.image_profile.ImageProfileFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 
 class LoginActionsListener {
     private lateinit var auth: FirebaseAuth
-    fun login(ui: ActivityLoginScreenBinding, activity: Context, modelLogin: ViewModelLogin) {
+    fun login(ui: ActivityLoginScreenBinding,
+              activity: Context,
+              modelLogin: ViewModelLogin,
+              loginActivity: LoginActivity
+    ) {
 
         ui.btnSingIn.setOnClickListener {
             val (email, pass) = getUserText(ui)
             val user = getUser(email, pass)
             val results = modelLogin.loginUser(activity, user)
             showProgressBar(ui)
-            processResults(results, activity, ui)
+            processResults(results, activity, ui, loginActivity)
 
         }
     }
@@ -32,7 +38,8 @@ class LoginActionsListener {
     private fun processResults(
         res: Task<AuthResult>,
         context: Context,
-        ui: ActivityLoginScreenBinding
+        ui: ActivityLoginScreenBinding,
+        loginActivity: LoginActivity
     ) {
 
         res.addOnCompleteListener {
@@ -40,7 +47,8 @@ class LoginActionsListener {
             if (it.isSuccessful) {
                 println("Done login with correct information")
                 hidePrograssBsar(ui)
-                goUserChatList(context)
+                //goUserChatList(context)
+                goProfile(loginActivity, ui)
             } else {
                 println("failed login ${it.exception}")
                 hidePrograssBsar(ui)
@@ -48,7 +56,6 @@ class LoginActionsListener {
             }
 
         }
-
     }
 
     fun View.hideKeyboard(context: Context) {
@@ -85,9 +92,15 @@ class LoginActionsListener {
     fun goUserChatList(context: Context) {
         val intent = Intent(context, UsersChatRoomListActivity::class.java)
         context.startActivity(intent)
-
-
     }
+
+   private fun goProfile(fragmentActivity: LoginActivity, ui: ActivityLoginScreenBinding){
+
+          fragmentActivity.supportFragmentManager.beginTransaction().apply {
+           replace(ui.flFragment.id,ImageProfileFragment.newInstance())
+           commit()
+       }
+   }
 
     fun showProgressBar(ui: ActivityLoginScreenBinding) {
         ui.progressBarLog.visibility = View.VISIBLE

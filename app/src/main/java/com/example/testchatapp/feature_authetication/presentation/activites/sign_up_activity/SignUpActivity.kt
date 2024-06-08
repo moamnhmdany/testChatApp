@@ -18,9 +18,6 @@ class SignUpActivity : AppCompatActivity() {
        action.signUp(ui,viewModel,this,this)
        action.openLogin(ui,this)
        UserOpareations.checkUserState(this)
-
-
-
     }
 //
 //    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
