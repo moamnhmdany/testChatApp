@@ -42,7 +42,7 @@ class SignUpFragment : Fragment() {
         return ui.root
     }
 
-
+//
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         action.signUp(ui,viewModel,context,context)
