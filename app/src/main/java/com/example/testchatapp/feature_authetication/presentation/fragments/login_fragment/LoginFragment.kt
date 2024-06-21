@@ -41,7 +41,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       action.checkUser(context)
+        action.checkUser(context)
 
         action.login(ui,context,viewModel)
 

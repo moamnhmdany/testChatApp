@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature_authetication.presentation.fragments.sign_up_fragment.SignUpFragment">
+
+        <RelativeLayout
+            android:id="@+id/root_ly_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".feature_authetication.presentation.activites.sign_up_activity.SignUpActivity">
+
+            <LinearLayout
+                android:id="@+id/top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                android:background="@color/white_lighter"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="25dp">
+
+                <Button
+                    android:id="@+id/btn_sign_up_back"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:background="@drawable/arrow_back_shap"
+                    android:contentDescription="@string/default_web_client_id" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:textStyle="bold"
+                    android:text="@string/sign_up_bar"
+                    android:textColor="@color/black_lighter"
+                    android:textSize="30sp"
+                    android:layout_marginRight="5dp" />
+
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"
+                android:theme="@style/Theme.TestChatApp.WhiteAccent"
+
+                />
+            <TextView
+                android:id="@+id/create_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/top_bar"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="@string/createe_account"
+                android:textColor="@color/black_lighter"
+                android:textSize="40sp"
+                android:textStyle="bold"
+
+                />
+
+            <EditText
+                android:id="@+id/name_textBox"
+                android:layout_width="300dp"
+                android:layout_height="60sp"
+                android:layout_below="@id/create_account"
+                android:hint="@string/hint_name_box"
+                android:paddingStart="20sp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/text_box_shap_bg_shap"
+                android:layout_centerInParent="true"
+                android:textColor="@color/signTextColor"
+                android:autofillHints="name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/email_textBox"
+                android:layout_width="300dp"
+                android:layout_height="60sp"
+                android:layout_below="@id/name_textBox"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/text_box_shap_bg_shap"
+                android:hint="@string/hint_email_box"
+                android:inputType="textEmailAddress"
+                android:paddingStart="20sp"
+
+                android:paddingEnd="20dp"
+                android:textColor="@color/signTextColor" />
+
+            <EditText
+                android:id="@+id/password_textBox"
+                android:layout_width="300dp"
+                android:layout_height="60sp"
+                android:hint="@string/hint_password_box"
+                android:paddingStart="20sp"
+                android:paddingEnd="20dp"
+                android:inputType="textPassword"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/email_textBox"
+                android:background="@drawable/text_box_shap_bg_shap"
+                android:layout_centerInParent="true"
+                android:autofillHints="password"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/btnSingIn"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/password_textBox"
+                android:layout_centerInParent="true"
+                android:background="@drawable/button_login_shap"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                android:text="@string/signIn"
+                android:textColor="@color/white"
+
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                android:id="@+id/dont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnSingIn"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/dont_forget_password" />
+
+
+        </RelativeLayout>
+
+
+
+</FrameLayout>

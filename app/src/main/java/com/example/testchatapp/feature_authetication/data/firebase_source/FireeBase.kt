@@ -1,9 +1,11 @@
 package com.example.testchatapp.feature_authetication.data.firebase_source
 
 import android.content.Context
+import android.net.Uri
 import android.widget.Toast
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.feature_authetication.domain.model.Users
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.AuthResult
@@ -12,6 +14,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -27,9 +32,7 @@ class FireeBase(val context: Context) : MyDataBaseDao {
     private lateinit var myTaskResult: Task<AuthResult>
     private val usersRef = Firebase.database.reference.child("Users")
     private val usersUnfriendRef = Firebase.database.reference.child("UsersUnfriend")
-
-
-
+    lateinit var userRefStorage : StorageReference
     override suspend fun loginWithEmailFireBase(user: Users, context: Context): Task<AuthResult> {
         this.userDataBase = Firebase.auth
 
@@ -187,9 +190,28 @@ class FireeBase(val context: Context) : MyDataBaseDao {
     }
 
     private fun userValid(user: Users): Boolean {
-
         return (user.userName.isNotEmpty() && user.email.isNotEmpty()
                 && user.password.isNotEmpty())
-
     }
+
+    override fun uploadImage(uri: Uri, listener:OnSuccessListener<UploadTask.TaskSnapshot> ){
+        userRefStorage = FirebaseStorage.getInstance().getReference("images")
+        userRefStorage.child(FirebaseAuth.getInstance().uid.toString()).putFile(uri).addOnSuccessListener(listener)
+    }
+
+ override suspend  fun addImageUri(){
+        usersRef.child(FirebaseAuth.getInstance().uid.toString()).child("imageUri").setValue(UtilsReference.user.imageUri).await()
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

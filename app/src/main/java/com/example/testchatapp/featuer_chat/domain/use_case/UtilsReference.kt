@@ -1,7 +1,7 @@
 package com.example.testchatapp.featuer_chat.domain.use_case
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.models.UserChats
@@ -16,7 +16,6 @@ import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapt
 import com.example.testchatapp.featuer_chat.presentation.adapters.MessengerAdapter
 import com.example.testchatapp.featuer_chat.presentation.adapters.UserRoomChatListAdapter
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import com.google.firebase.database.ValueEventListener
 
 object UtilsReference {
      var user = Users()
@@ -60,4 +59,5 @@ object UtilsReference {
     var getMessagesCase = UserMessageCase()
     var userFriendList = ArrayList<UserFriends>()
     var mutableUserFriendsList = MutableLiveData<ArrayList<UserFriends>>()
+     var imageUri : Uri? = null
 }

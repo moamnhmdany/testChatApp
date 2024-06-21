@@ -11,9 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import com.example.testchatapp.databinding.FragmentImageProfileBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
-import com.example.testchatapp.feature_authetication.presentation.fragments.image_profile.ImageProfileFragment
+import com.example.testchatapp.feature_authetication.presentation.fragments.image_profile_fragment.ImageProfileFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 

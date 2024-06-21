@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature_authetication.presentation.fragments.image_profile.ImageProfileFragment">
+    tools:context=".feature_authetication.presentation.fragments.image_profile_fragment.ImageProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profile_root_ly"
@@ -62,6 +62,7 @@
                 android:background="@drawable/add_fab_shap_ly">
 
                 <com.getbase.floatingactionbutton.FloatingActionButton
+                   android:id="@+id/fab_image_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"

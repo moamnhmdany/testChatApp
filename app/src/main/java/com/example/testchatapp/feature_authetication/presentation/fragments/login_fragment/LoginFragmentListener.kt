@@ -8,15 +8,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.testchatapp.R
-import com.example.testchatapp.databinding.ActivityLoginScreenBinding
 import com.example.testchatapp.databinding.FragmentLoginBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity
 import com.example.testchatapp.feature_authetication.domain.model.Users
-import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
-import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.ViewModelLogin
 import com.example.testchatapp.feature_authetication.presentation.activites.sign_up_activity.SignUpActivity
-import com.example.testchatapp.feature_authetication.presentation.fragments.image_profile.ImageProfileFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -50,7 +46,7 @@ class LoginFragmentListener {
                 if (it.isSuccessful) {
                     println("Done login with correct information")
                     hidePrograssBsar(ui)
-                    goProfile(ui)
+
 
                 } else {
                     println("failed login ${it.exception}")
@@ -97,9 +93,7 @@ class LoginFragmentListener {
             context.startActivity(intent)
         }
 
-        private fun goProfile(ui: FragmentLoginBinding){
-            ui.rootLy.findNavController().navigate(R.id.action_loginFragment_to_imageProfileFragment)
-        }
+
 
 
         fun showProgressBar(ui: FragmentLoginBinding) {
@@ -113,8 +107,7 @@ class LoginFragmentListener {
 
         fun openSignUp(context: Context, ui: FragmentLoginBinding) {
             ui.btnSignUp.setOnClickListener {
-                val intent = Intent(context, SignUpActivity::class.java)
-                context.startActivity(intent)
+                ui.rootLy.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
             }
         }
 

@@ -5,17 +5,29 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
     <fragment
+        android:id="@+id/imageProfileFragment"
+        android:name="com.example.testchatapp.feature_authetication.presentation.fragments.image_profile_fragment.ImageProfileFragment"
+        android:label="fragment_image_profile"
+        tools:layout="@layout/fragment_image_profile" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.testchatapp.feature_authetication.presentation.fragments.sign_up_fragment.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_imageProfileFragment"
+            app:destination="@id/imageProfileFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.testchatapp.feature_authetication.presentation.fragments.login_fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_imageProfileFragment"
-            app:destination="@id/imageProfileFragment" />
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/imageProfileFragment"
-        android:name="com.example.testchatapp.feature_authetication.presentation.fragments.image_profile.ImageProfileFragment"
-        android:label="fragment_image_profile"
-        tools:layout="@layout/fragment_image_profile" />
 </navigation>

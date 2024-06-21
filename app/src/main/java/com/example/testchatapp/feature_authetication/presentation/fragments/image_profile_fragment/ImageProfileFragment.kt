@@ -1,4 +1,4 @@
-package com.example.testchatapp.feature_authetication.presentation.fragments.image_profile
+package com.example.testchatapp.feature_authetication.presentation.fragments.image_profile_fragment
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import com.example.testchatapp.R
 import com.example.testchatapp.databinding.FragmentImageProfileBinding
-import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
 class ImageProfileFragment : Fragment() {
     val action = ProfileFragmnetListener()
@@ -28,14 +25,20 @@ class ImageProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-       ui = FragmentImageProfileBinding.inflate(inflater, container, false)
+
+        ui = FragmentImageProfileBinding.inflate(inflater, container, false)
+        action.setupImage(ui, this)
+
         return ui.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         action.checkUser(ui,activity)
+
+         // action.checkUser(ui,activity)
+        action.goUserListPage(ui,activity)
+        action.goUserListPageNextButton(ui, activity,context)
 
     }
 

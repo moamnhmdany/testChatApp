@@ -2,7 +2,7 @@ package com.example.testchatapp.feature_authetication.presentation.activites.log
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.testchatapp.feature_authetication.presentation.fragments.image_profile.ImageProfileFragment
+import com.example.testchatapp.feature_authetication.presentation.fragments.image_profile_fragment.ImageProfileFragment
 import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
 class LoginActivity : AppCompatActivity() {

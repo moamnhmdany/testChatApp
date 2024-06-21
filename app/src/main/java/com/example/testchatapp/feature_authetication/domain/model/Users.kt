@@ -7,7 +7,7 @@ class Users() {
     var userName: String = ""
     var email: String = ""
     var password: String = ""
-    var imagUri: String = ""
+    var imageUri: String = ""
 
 
 
