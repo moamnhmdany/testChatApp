@@ -36,6 +36,7 @@ class MyFireBase : DataBaseDao {
              friendUser.userId= friendUser.userUnfriendId
              friendUser.userUnfriendUserName = data!!.userName
              friendUser.userUnfriendId = data.id
+             friendUser.userUnfriendImageUri = data.imageUri
 
              usersRef.child(id).child("UserFriends")
                  .child(FirebaseAuth.getInstance().uid.toString()).setValue(friendUser)

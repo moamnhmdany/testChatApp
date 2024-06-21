@@ -8,6 +8,7 @@ import com.example.testchatapp.databinding.UserItemAddFriendBinding
 import com.example.testchatapp.databinding.UserItemAddFriendBinding.inflate
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -42,8 +43,10 @@ class AddFriendAdapter() : RecyclerView.Adapter<AddFriendAdapter.MyViewHolder>()
 
             with(list.value!![position]) {
                 holder.MyView.tvUserName.text = userUnfriendUserName
-                MyView.btnImageAddFriend
-
+                if(userUnfriendImageUri.isNotEmpty()) {
+                    Picasso.get().load(userUnfriendImageUri)
+                        .into(holder.MyView.profileImageAddFriend)
+                }
                 holder.MyView.btnImageAddFriend.setOnClickListener {
                     removeItem(adapterPosition)
                     println("==================$userUnfriendUserName")

@@ -9,6 +9,7 @@ import com.example.testchatapp.databinding.UserRoomShapBinding
 import com.example.testchatapp.databinding.UserRoomShapBinding.inflate
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
+import com.squareup.picasso.Picasso
 
 class UserRoomChatListAdapter(): RecyclerView.Adapter<UserRoomChatListAdapter.MyViewHolder>() {
       lateinit var roomList : MutableLiveData<ArrayList<UserChatRoom>>
@@ -40,6 +41,9 @@ class UserRoomChatListAdapter(): RecyclerView.Adapter<UserRoomChatListAdapter.My
                 }
                  holder.myView.userName.text = this.userName
                  holder.myView.lastMsg.text = this.userLastMsg
+                if(userPictuer.isNotEmpty()){
+                    Picasso.get().load(userPictuer).into(holder.myView.profileImageAddFriend)
+                }
             }
         }
     }

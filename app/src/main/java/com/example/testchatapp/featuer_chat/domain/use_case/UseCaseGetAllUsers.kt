@@ -82,10 +82,12 @@ private fun makeUnfriendObject(user: Users?): UsersUnfriend {
 
     val id = user?.id
     val userName = user?.userName
+    val imageUri = user?.imageUri
 
     unFriend.userUnfriendId = id!!
     unFriend.userUnfriendUserName = userName!!
     unFriend.userId = FirebaseAuth.getInstance().uid!!
+    unFriend.userUnfriendImageUri = imageUri!!
     return unFriend
 }
 

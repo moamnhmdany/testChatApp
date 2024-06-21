@@ -21,6 +21,7 @@ class ViewModelUserRoomList : ViewModel() {
     private val getCase = UseCaseGetAllUsers()
     private val userRoomsListCase = UsersFriendCase()
     private  val userDataCase = GetUserDataCase()
+
      fun setRoomList() {
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -32,6 +33,7 @@ class ViewModelUserRoomList : ViewModel() {
                         val userRoom = UserChatRoom()
                         userRoom.id = myData!!.userUnfriendId
                         userRoom.userName= myData.userUnfriendUserName
+                        userRoom.userPictuer = myData.userUnfriendImageUri
                         UtilsReference.roomList.add(userRoom)
                         println("------------->>>>>----${myData.userUnfriendUserName}")
 
