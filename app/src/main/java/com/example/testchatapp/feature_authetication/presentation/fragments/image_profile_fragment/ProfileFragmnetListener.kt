@@ -4,14 +4,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 import com.example.testchatapp.databinding.FragmentImageProfileBinding
+import com.example.testchatapp.databinding.FragmentLoginBinding
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UsersChatRoomListActivity
 import com.example.testchatapp.feature_authetication.domain.use_case.UseCaseUploadImage
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragmnetListener {
@@ -19,9 +22,10 @@ class ProfileFragmnetListener {
     private lateinit var auth: FirebaseAuth
 
 
-    private fun uploadImage(context: Context) {
+    private fun uploadImage(context: Context,ui: FragmentImageProfileBinding,listener: OnSuccessListener<Any>) {
+        showProgressBar(ui)
         val case = UseCaseUploadImage(context)
-        case.uploadImage(UtilsReference.imageUri!!)
+        case.uploadImage(UtilsReference.imageUri!!,listener)
     }
 
     fun checkUser(ui: FragmentImageProfileBinding, activity: FragmentActivity?) {
@@ -76,10 +80,20 @@ class ProfileFragmnetListener {
         context: Context?
     ) {
         ui.btnNext.setOnClickListener {
-            uploadImage(context!!)
-            val intent = Intent(activity, UsersChatRoomListActivity::class.java)
-            activity!!.startActivity(intent)
+            uploadImage(context!!,ui){
+                hidePrograssBsar(ui)
+                val intent = Intent(activity, UsersChatRoomListActivity::class.java)
+                activity!!.startActivity(intent)
+            }
+
         }
     }
+    private fun showProgressBar(ui: FragmentImageProfileBinding) {
+        ui.progressBarLog.visibility = View.VISIBLE
+    }
 
+    private fun hidePrograssBsar(ui: FragmentImageProfileBinding) {
+        ui.progressBarLog.visibility = View.INVISIBLE
+
+    }
 }

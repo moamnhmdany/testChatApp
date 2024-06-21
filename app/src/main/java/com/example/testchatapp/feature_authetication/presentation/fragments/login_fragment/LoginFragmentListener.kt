@@ -23,6 +23,7 @@ class LoginFragmentListener {
         fun login(ui: FragmentLoginBinding,
                   activity: Context,
                   modelLogin: LoginViewModel,
+
         ) {
 
             ui.btnSingIn.setOnClickListener {
@@ -46,7 +47,7 @@ class LoginFragmentListener {
                 if (it.isSuccessful) {
                     println("Done login with correct information")
                     hidePrograssBsar(ui)
-
+                    goUserChatList(context)
 
                 } else {
                     println("failed login ${it.exception}")

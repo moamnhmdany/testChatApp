@@ -30,5 +30,7 @@ class RepositoryImpl() : ChatRepository {
     override suspend fun getMessages(roomId : String, listener: ValueEventListener){
          data.getMessages(roomId, listener)
     }
-
+  override  fun getUserData(){
+      data.getUserData()
+  }
 }

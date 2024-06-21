@@ -19,6 +19,7 @@ import com.example.testchatapp.feature_authetication.domain.model.Users
 
 object UtilsReference {
      var user = Users()
+     var userMutableliveData = MutableLiveData<Users>()
      var list = ArrayList<Users>()
 
 

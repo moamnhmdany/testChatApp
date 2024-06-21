@@ -74,7 +74,17 @@
 
 
         </RelativeLayout>
-
+        <ProgressBar
+            android:id="@+id/progress_bar_log"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:theme="@style/Theme.TestChatApp.WhiteAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_ly_profile"
+            />
         <Button
             android:id="@+id/btn_next"
             android:layout_width="350dp"

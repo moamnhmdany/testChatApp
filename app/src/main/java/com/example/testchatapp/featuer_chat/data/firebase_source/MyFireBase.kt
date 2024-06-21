@@ -60,7 +60,12 @@ class MyFireBase : DataBaseDao {
     }
 
 
-
+ override  fun getUserData(){
+      usersRef.child(FirebaseAuth.getInstance().uid.toString()).get().addOnSuccessListener {
+          UtilsReference.user = it.getValue(Users::class.java)!!
+          UtilsReference.userMutableliveData.postValue(UtilsReference.user)
+      }
+   }
 
 
 

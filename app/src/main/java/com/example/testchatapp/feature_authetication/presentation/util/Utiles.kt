@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.core.view.WindowCompat
+import androidx.databinding.DataBindingUtil
+import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding
 import com.example.testchatapp.databinding.ActivityMainBinding
@@ -11,11 +13,13 @@ import com.example.testchatapp.databinding.ActivitySignUpBinding
 import com.example.testchatapp.databinding.ActivitySignUpBinding.inflate
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.databinding.ActivityUsersListAddBinding
+import com.example.testchatapp.databinding.HeaderNavigationMenuBinding
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding.inflate as inflateChatMessangerPage
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding.inflate as inflateLogin
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding.inflate as inflateUsers
 import com.example.testchatapp.databinding.ActivityUsersListAddBinding.inflate as inflateListAddFriend
 import com.example.testchatapp.databinding.ActivityMainBinding.inflate as mainInflater
+
 
 
 class Utiles() {
@@ -25,6 +29,13 @@ class Utiles() {
     private  lateinit var bindingUsersList: ActivityUsersChatListBinding
     private  lateinit var bindingUsersListAdd: ActivityUsersListAddBinding
     private lateinit var bindingChatMessangrePage: ActivityChatMessangerPageBinding
+
+    fun settingNavHeader(binding: ActivityUsersChatListBinding): HeaderNavigationMenuBinding {
+        val viewHeader = binding.navView.getHeaderView(0)
+        val navViewHeaderBinding : HeaderNavigationMenuBinding = HeaderNavigationMenuBinding.bind(viewHeader)
+
+        return navViewHeaderBinding
+    }
 
     fun settingMain(context :Context,activity: Activity): ActivityMainBinding {
         val li = LayoutInflater.from(context)

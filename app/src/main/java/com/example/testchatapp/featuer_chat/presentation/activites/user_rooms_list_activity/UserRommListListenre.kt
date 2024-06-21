@@ -17,17 +17,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
-import com.example.testchatapp.databinding.FragmentLoginBinding
+import com.example.testchatapp.databinding.HeaderNavigationMenuBinding
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.MainActivity
-import com.example.testchatapp.feature_authetication.presentation.activites.login_activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.squareup.picasso.Picasso
 
 class UserRommListListenre {
 
@@ -39,8 +36,9 @@ class UserRommListListenre {
         ui: ActivityUsersChatListBinding,
         lifecycleOwner: LifecycleOwner
     ) {
-        UtilsReference.viewModelRoomsList.setRoomList()
 
+        UtilsReference.viewModelRoomsList.setRoomList()
+        UtilsReference.viewModelRoomsList.getUserData()
 
         UtilsReference.userRoomList.observe(lifecycleOwner, Observer {
             recycleViewSetting(context, ui)
@@ -51,6 +49,22 @@ class UserRommListListenre {
 
     }
 
+
+    fun updateUserName(ui: HeaderNavigationMenuBinding, lifecycleOwner: LifecycleOwner){
+        UtilsReference.userMutableliveData.observe(lifecycleOwner, Observer {
+            ui.useNameMenu.text = it.userName
+
+        })
+    }
+
+    fun updateUserImage(ui: HeaderNavigationMenuBinding, lifecycleOwner: LifecycleOwner){
+        UtilsReference.userMutableliveData.observe(lifecycleOwner, Observer {
+            if(it.imageUri.isNotEmpty()){
+            Picasso.get().load(it.imageUri).into(ui.profileImageMenu)
+            //ui.profileImageMenu.setImageURI(UtilsReference.imageUri)
+            }
+        })
+    }
     private fun recycleViewSetting(context: Context, ui: ActivityUsersChatListBinding) {
         layoutManager = LinearLayoutManager(context)
         ui.usersChatRoomListRecyclerview.layoutManager = layoutManager

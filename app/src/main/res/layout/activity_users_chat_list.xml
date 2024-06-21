@@ -122,6 +122,7 @@
             android:fitsSystemWindows="true"
             app:menu="@menu/nav_bar_side_menu"
             android:layoutDirection="ltr"
+            app:headerLayout="@layout/header_navigation_menu"
             />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

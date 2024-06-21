@@ -194,13 +194,14 @@ class FireeBase(val context: Context) : MyDataBaseDao {
                 && user.password.isNotEmpty())
     }
 
-    override fun uploadImage(uri: Uri, listener:OnSuccessListener<UploadTask.TaskSnapshot> ){
+    override suspend fun uploadImage(uri: Uri, listener:OnSuccessListener<UploadTask.TaskSnapshot> ){
         userRefStorage = FirebaseStorage.getInstance().getReference("images")
         userRefStorage.child(FirebaseAuth.getInstance().uid.toString()).putFile(uri).addOnSuccessListener(listener)
     }
 
- override suspend  fun addImageUri(){
-        usersRef.child(FirebaseAuth.getInstance().uid.toString()).child("imageUri").setValue(UtilsReference.user.imageUri).await()
+ override suspend  fun addImageUri(listener: OnSuccessListener<Any>){
+        usersRef.child(FirebaseAuth.getInstance().uid.toString())
+            .child("imageUri").setValue(UtilsReference.user.imageUri).addOnSuccessListener(listener)
     }
 
 

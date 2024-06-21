@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
+import com.example.testchatapp.featuer_chat.domain.use_case.GetUserDataCase
 import com.example.testchatapp.featuer_chat.domain.use_case.UseCaseGetAllUsers
 import com.example.testchatapp.featuer_chat.domain.use_case.UsersFriendCase
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 class ViewModelUserRoomList : ViewModel() {
     private val getCase = UseCaseGetAllUsers()
     private val userRoomsListCase = UsersFriendCase()
-
+    private  val userDataCase = GetUserDataCase()
      fun setRoomList() {
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -43,6 +44,12 @@ class ViewModelUserRoomList : ViewModel() {
                 }
             })
         }
+
+    }
+
+
+    fun getUserData(){
+         userDataCase.getUserData()
 
     }
 }

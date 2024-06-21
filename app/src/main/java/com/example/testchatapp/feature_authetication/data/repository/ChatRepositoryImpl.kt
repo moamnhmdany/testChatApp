@@ -40,10 +40,10 @@ class ChatRepositoryImpl(context: Context) :Auth_Repository{
     override fun getUsers(): ArrayList<Users> {
         TODO("Not yet implemented")
     }
-  override  fun uploadImage(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>){
+  override suspend  fun uploadImage(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>){
         myDataBaseDao.uploadImage(uri, listener)
     }
-  override  suspend  fun addImageUri(){
-        myDataBaseDao.addImageUri()
+  override  suspend  fun addImageUri(listener: OnSuccessListener<Any>){
+        myDataBaseDao.addImageUri(listener)
     }
 }

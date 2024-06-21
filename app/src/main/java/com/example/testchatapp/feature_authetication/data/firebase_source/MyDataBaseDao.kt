@@ -13,6 +13,6 @@ interface MyDataBaseDao{
 
      suspend fun createUserWithEmailAndPassword(user: Users,context: Context)
      suspend fun  loginWithEmailFireBase(user: Users,context: Context): Task<AuthResult>
-     fun uploadImage(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>)
-     suspend  fun addImageUri()
+     suspend  fun uploadImage(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>)
+     suspend  fun addImageUri(listener: OnSuccessListener<Any>)
 }

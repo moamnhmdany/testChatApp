@@ -16,6 +16,6 @@ interface Auth_Repository {
     fun lginWithFacebook(user: Users)
    suspend  fun loginWithEmail(user: Users,context: Context): Task<AuthResult>
     fun getUsers():ArrayList<Users>
-    fun uploadImage(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>)
-    suspend  fun addImageUri()
+  suspend  fun uploadImage(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>)
+    suspend  fun addImageUri(listener: OnSuccessListener<Any>)
 }
