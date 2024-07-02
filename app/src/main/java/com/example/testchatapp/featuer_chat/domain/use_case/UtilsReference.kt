@@ -61,4 +61,9 @@ object UtilsReference {
     var userFriendList = ArrayList<UserFriends>()
     var mutableUserFriendsList = MutableLiveData<ArrayList<UserFriends>>()
      var imageUri : Uri? = null
+
+    var permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO)
+    const val REQUEST_CODE = 200
+    var permissonGranted = false
+
 }

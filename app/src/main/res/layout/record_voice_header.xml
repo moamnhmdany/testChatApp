@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        >
+
+        <Button
+            android:id="@+id/btn_play_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/play_icon"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <com.masoudss.lib.WaveformSeekBar
+            android:id="@+id/waveformSeekBar"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_voice_time"
+            app:layout_constraintStart_toEndOf="@+id/btn_play_voice"
+            app:layout_constraintTop_toTopOf="parent"
+            app:wave_background_color="@color/white"
+            app:wave_corner_radius="2dp"
+            app:wave_gap="2dp"
+            app:wave_gravity="center"
+            app:wave_max_progress="100"
+            app:wave_min_height="5dp"
+            app:wave_progress="33"
+            app:wave_progress_color="@color/blue"
+            app:wave_width="5dp" />
+        <TextView
+            android:id="@+id/tv_voice_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_voice"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="15dp"
+            android:text="@string/time_voice"
+            android:textSize="20sp"
+
+            />
+        <Button
+            android:id="@+id/btn_delete_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/delete_button_voice"
+            android:clickable="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:textColor="@color/white"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toStartOf="@id/line_divider"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/line_divider"
+            android:layout_width="3dp"
+            android:layout_height="30dp"
+            android:background="@color/grayTextColor"
+            app:layout_constraintEnd_toStartOf="@id/btn_send_voice"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="15dp"
+            />
+        <Button
+            android:id="@+id/btn_send_voice"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/send_voice_icon"
+            android:clickable="true"
+            android:enabled="true"
+            android:rotation="-39"
+            android:focusable="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

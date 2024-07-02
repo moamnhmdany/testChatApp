@@ -20,6 +20,7 @@ class ChatMessageViewModel() : ViewModel() {
             )
         }
     }
+
      fun getMessages(roomId: String, listener: ValueEventListener){
 
        viewModelScope.launch (Dispatchers.IO){

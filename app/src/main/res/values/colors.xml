@@ -16,5 +16,8 @@
     <color name="next_button_color">#000000</color>
     <color name="next_bg">#52B6BB</color>
     <color name="next_text_color">#000000</color>
+    <color name="blue">#3D5AFE</color>
+    <color name="red">#FF3D00</color>
+    <color name="colorAccent">#565554</color>
 
 </resources>

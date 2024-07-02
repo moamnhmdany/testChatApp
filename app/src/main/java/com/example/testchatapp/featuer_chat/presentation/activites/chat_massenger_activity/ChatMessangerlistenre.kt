@@ -158,7 +158,7 @@ class ChatMessangerlistenre {
 
     private fun getUserUnfriendData(intent: Intent): UsersUnfriend {
 
-        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             intent.getParcelableExtra("userDataFriend", UsersUnfriend::class.java)
 
         } else {
@@ -171,7 +171,7 @@ class ChatMessangerlistenre {
     }
     private fun getUserRoomData(intent: Intent): UserChatRoom {
 
-        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             intent.getParcelableExtra("userRoomMate", UserChatRoom::class.java)
 
         } else {
@@ -183,7 +183,7 @@ class ChatMessangerlistenre {
         return userData
     }
 
-    fun getIntentData(intent: Intent):Any{
+    private fun getIntentData(intent: Intent):Any{
         val check = intent.getIntExtra("checkClass",0)
 
        if(check == 1)
