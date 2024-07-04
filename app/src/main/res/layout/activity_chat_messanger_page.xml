@@ -72,8 +72,8 @@
             android:layoutDirection="ltr"
             android:orientation="horizontal"
             android:layout_marginBottom="10dp"
+            android:visibility="visible"
             >
-
             <EditText
                 android:id="@+id/chat_msg_textBox"
                 android:layout_width="200dp"
@@ -86,7 +86,6 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp"
                 android:textColor="@color/black_lighter" />
-
             <ImageView
                 android:id="@+id/btn_mic"
                 android:layout_width="48dp"
@@ -99,7 +98,6 @@
                 android:enabled="true"
                 android:focusable="true"
                 android:src="@drawable/mic_icon" />
-
             <ImageView
                 android:id="@+id/btn_send_msg"
                 android:layout_width="48dp"
@@ -114,9 +112,22 @@
                 android:src="@drawable/send_icon" />
         </LinearLayout>
 
+     <include
+         android:id="@+id/voice_ly"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         layout="@layout/record_voice_header"
+
+         android:gravity="center"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentStart="true"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="10dp"
+         android:layout_margin="10dp"
+         android:visibility="gone"
+         />
+
+
+
     </RelativeLayout>
-
-    <data>
-
-    </data>
 </layout>

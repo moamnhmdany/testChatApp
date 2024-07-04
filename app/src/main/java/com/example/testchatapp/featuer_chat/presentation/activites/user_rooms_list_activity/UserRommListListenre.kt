@@ -21,6 +21,7 @@ import com.example.testchatapp.databinding.HeaderNavigationMenuBinding
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
+import com.example.testchatapp.featuer_chat.presentation.activites.profile_activity.ProfileActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -114,7 +115,7 @@ class UserRommListListenre {
         ui.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.myProfile -> {
-                    Toast.makeText(context, "My Profile", Toast.LENGTH_SHORT).show()
+                    openProfileActivity(context)
                     true
                 }
 
@@ -151,6 +152,11 @@ class UserRommListListenre {
     private fun goToLoginActivity(context: Context) {
 
         val intent = Intent(context, MainActivity::class.java)
+        context.startActivity(intent)
+    }
+    private fun openProfileActivity(context: Context) {
+
+        val intent = Intent(context, ProfileActivity::class.java)
         context.startActivity(intent)
     }
 

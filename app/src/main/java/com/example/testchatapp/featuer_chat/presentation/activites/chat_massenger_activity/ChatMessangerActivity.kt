@@ -17,7 +17,6 @@ class ChatMessangerActivity() : AppCompatActivity() {
     private lateinit var binding: ActivityChatMessangerPageBinding
     private val action = ChatMessangerlistenre()
     private val setting = Utiles()
-    private val permissionsHandler = PermissionsHandler(this)
     @SuppressLint("SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +25,8 @@ class ChatMessangerActivity() : AppCompatActivity() {
         action.goToMain(this, ui)
         action.sendMessage(ui, intent)
         action.observeMessageList(intent, this, ui, this)
-//        permissionsHandler.checkPermission()
-//        permissionsHandler.requestPermissions()
+        action.openSoundRecord(ui)
+        action.closeSoundRecord(ui)
 
         val lp = ui.chatMessagesRecycleView.layoutParams
         KeyboardVisibilityEvent.setEventListener(this, object : KeyboardVisibilityEventListener {

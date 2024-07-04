@@ -65,5 +65,4 @@ object UtilsReference {
     var permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO)
     const val REQUEST_CODE = 200
     var permissonGranted = false
-
 }

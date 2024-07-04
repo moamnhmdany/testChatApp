@@ -8,6 +8,9 @@ class Users() {
     var email: String = ""
     var password: String = ""
     var imageUri: String = ""
+    var phoneNumber = ""
+    var city = ""
+    var country = ""
 
 
 

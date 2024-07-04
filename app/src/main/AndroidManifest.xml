@@ -14,17 +14,22 @@
         android:theme="@style/Theme.TestChatApp"
         android:windowSoftInputMode="adjustPan"
         tools:targetApi="34">
+        <activity
+            android:name=".featuer_chat.presentation.activites.profile_activity.ProfileActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TestChatApp.noActionCustomBar"
 
+            />
         <activity
             android:name=".feature_authetication.presentation.activites.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TestChatApp.noActionCustomBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity"
             android:exported="true"
@@ -49,10 +54,10 @@
             android:theme="@style/Theme.TestChatApp.noActionCustomBar" />
     </application>
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 </manifest>

@@ -4,11 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.core.view.WindowCompat
-import androidx.databinding.DataBindingUtil
-import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
 import com.example.testchatapp.databinding.ActivityLoginScreenBinding
 import com.example.testchatapp.databinding.ActivityMainBinding
+import com.example.testchatapp.databinding.ActivityProfileBinding
 import com.example.testchatapp.databinding.ActivitySignUpBinding
 import com.example.testchatapp.databinding.ActivitySignUpBinding.inflate
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding
@@ -19,6 +18,8 @@ import com.example.testchatapp.databinding.ActivityLoginScreenBinding.inflate as
 import com.example.testchatapp.databinding.ActivityUsersChatListBinding.inflate as inflateUsers
 import com.example.testchatapp.databinding.ActivityUsersListAddBinding.inflate as inflateListAddFriend
 import com.example.testchatapp.databinding.ActivityMainBinding.inflate as mainInflater
+import com.example.testchatapp.databinding.ActivityProfileBinding.inflate as profileEditeInflater
+
 
 
 
@@ -29,7 +30,17 @@ class Utiles() {
     private  lateinit var bindingUsersList: ActivityUsersChatListBinding
     private  lateinit var bindingUsersListAdd: ActivityUsersListAddBinding
     private lateinit var bindingChatMessangrePage: ActivityChatMessangerPageBinding
+    private lateinit var bindingProfileEditePage: ActivityProfileBinding
 
+    fun settingProfileEdite(context :Context,activity: Activity): ActivityProfileBinding {
+        val li = LayoutInflater.from(context)
+        bindingProfileEditePage = profileEditeInflater(li)
+        val view = bindingProfileEditePage.root
+
+        activity.setContentView(view)
+        WindowCompat.setDecorFitsSystemWindows(activity.window, false)
+        return bindingProfileEditePage
+    }
     fun settingNavHeader(binding: ActivityUsersChatListBinding): HeaderNavigationMenuBinding {
         val viewHeader = binding.navView.getHeaderView(0)
         val navViewHeaderBinding : HeaderNavigationMenuBinding = HeaderNavigationMenuBinding.bind(viewHeader)

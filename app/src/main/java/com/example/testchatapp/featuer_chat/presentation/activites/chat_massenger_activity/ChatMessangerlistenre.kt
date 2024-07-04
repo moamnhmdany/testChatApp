@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ import java.time.LocalTime
 import java.util.Date
 import java.util.Locale
 import java.util.UUID
+import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf.Visibility
 
 class ChatMessangerlistenre {
 
@@ -210,5 +212,28 @@ class ChatMessangerlistenre {
             context.startActivity(intent)
         }
     }
+    fun openSoundRecord(ui: ActivityChatMessangerPageBinding){
+          ui.btnMic.setOnClickListener {
+              ui.lyBottomBar.visibility = View.GONE
+              ui.voiceLy.getRoot().visibility = View.VISIBLE
+          }
+    }
+    fun closeSoundRecord(ui: ActivityChatMessangerPageBinding){
+        ui.voiceLy.btnDeleteVoice.setOnClickListener {
+            ui.voiceLy.getRoot().visibility = View.GONE
+            ui.lyBottomBar.visibility  = View.VISIBLE
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
