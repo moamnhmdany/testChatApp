@@ -16,6 +16,7 @@ import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapt
 import com.example.testchatapp.featuer_chat.presentation.adapters.MessengerAdapter
 import com.example.testchatapp.featuer_chat.presentation.adapters.UserRoomChatListAdapter
 import com.example.testchatapp.feature_authetication.domain.model.Users
+import java.io.File
 
 object UtilsReference {
      var user = Users()
@@ -65,4 +66,9 @@ object UtilsReference {
     var permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO)
     const val REQUEST_CODE = 200
     var permissonGranted = false
+    var audioPath = ""
+    var fileName = ""
+    var isRecorded = false
+    var isPaused = false
+    lateinit var audioFile : File
 }

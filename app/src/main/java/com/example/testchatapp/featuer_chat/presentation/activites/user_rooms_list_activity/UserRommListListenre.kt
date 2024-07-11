@@ -20,7 +20,7 @@ import com.example.testchatapp.databinding.ActivityUsersChatListBinding
 import com.example.testchatapp.databinding.HeaderNavigationMenuBinding
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
-import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessangerActivity
+import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessengerActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.profile_activity.ProfileActivity
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.UsersListAddActivity
 import com.example.testchatapp.feature_authetication.presentation.activites.MainActivity
@@ -173,7 +173,7 @@ class UserRommListListenre {
     }
 
     fun goTOMessagesActivity(context: Context, user: UserChatRoom) {
-        val intent = Intent(context, ChatMessangerActivity::class.java)
+        val intent = Intent(context, ChatMessengerActivity::class.java)
         intent.putExtra("userRoomMate",user)
         intent.putExtra("checkClass",1)
         context.startActivity(intent)
