@@ -7,37 +7,41 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import androidx.resourceinspection.annotation.Attribute
+import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 
-class WaveForm(context1: Context?,attribute: AttributeSet?) : View(context1, attribute) {
-
+class WaveForm(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+    private var normal = 0f
+    private var left = 0f
+    private var top = 0f
+    private var right :Float = 0f
+    private var bottom :Float = 0f
     private var paint  = Paint()
     private var amplitued = ArrayList<Float>()
-    private var spikes = ArrayList<RectF>()
+    private var spikesRectangles = ArrayList<RectF>()
     private var raduis = 6f
-    private var width = 9f
+    private var width = 4f
     private var screenWidth = 0f
     private var screenHeight = 40f
-    private var distance = 6f
+    private var distance = 5f
     private var maxSpikes = 0
     init {
-        paint.color = Color.rgb(244,81,30)
+        paint.color = Color.rgb(255,255,255)
         screenWidth = resources.displayMetrics.widthPixels.toFloat()
-        maxSpikes = (screenWidth / (width + distance)).toInt()
+        maxSpikes = (350f  / (width + distance)).toInt()  // get how many rect
     }
 
-    fun addAmplitued(amp: Float){
-        var normal = Math.min(amp.toInt()/7,screenHeight.toInt()).toFloat()
-      amplitued.add(normal)
+    fun addAmplitude(amp: Float){
+         normal = Math.min(amp.toInt()/7,screenHeight.toInt()).toFloat()
+        amplitued.add(normal)
 
-        spikes.clear()
-        var amps = amplitued.takeLast(maxSpikes)
-        for (i :Int in amps.indices ) {
-            var left = screenWidth - i*(width + distance)
-            var top = screenHeight/2 + amps[i]/2
-            var right :Float = left + width
-            var bottom :Float = top + amps[i]   // height of Rectangle
-            spikes.add(RectF(left, top, right, bottom))
+        spikesRectangles.clear()
+       var lastAmps = amplitued.takeLast(maxSpikes)
+        for (i :Int in lastAmps.indices ) {
+             left = (screenWidth - 670f)  - i*(width + distance)
+             top = (screenHeight/2 + lastAmps[i]/2) // for center Rectangles
+             right  = left + width
+            bottom  = top + lastAmps[i]   // height of Rectangle
+            spikesRectangles.add(RectF(left, top, right, bottom))
             invalidate()
         }
     }
@@ -45,9 +49,18 @@ class WaveForm(context1: Context?,attribute: AttributeSet?) : View(context1, att
     override fun onDraw(canvas: Canvas) {
 
         super.onDraw(canvas)
-        spikes.forEach {
+
+        spikesRectangles.forEach {
             canvas.drawRoundRect(it,raduis, raduis, paint)
         }
+    }
 
+     fun clear(){
+        if(!UtilsReference.isRecorded && !UtilsReference.isPaused){
+
+            amplitued.clear()
+            spikesRectangles.clear()
+            invalidate()
+        }
     }
 }

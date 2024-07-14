@@ -7,7 +7,6 @@ import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
@@ -257,7 +256,6 @@ class ChatMessangerlistenre {
         })
     }
 
-
     fun initializeRecorder(context: Context): RecordVoiceHandler {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
 
@@ -281,6 +279,7 @@ class ChatMessangerlistenre {
         ui.btnMic.setOnClickListener {
 
             if (permissionsHandler.checkPermission()) {
+                ui.voiceLy.myWaveForm.clear()
                 openSoundRecord(ui)
                 recorder.setupRecordVoice(activity)
                 recorder.startRecord()

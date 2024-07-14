@@ -12,18 +12,18 @@ import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 
 class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListener {
     private lateinit var ui : ActivityChatMessangerPageBinding
+    private lateinit var record : RecordVoiceHandler
     private val action = ChatMessangerlistenre()
     private val setting = Utiles()
     private val  permissionsHandler = PermissionsHandler(this)
     private val timer = CustomsTimer(this)
 
-
     @SuppressLint("SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         ui =  setting.settingChatMessangerPage(this, this)
-        val record = action.initializeRecorder(this)
+         ui =  setting.settingChatMessengerPage(this, this)
+         record = action.initializeRecorder(this)
 
         action.goToMain(this, ui)
         action.sendMessage(ui, intent)
@@ -43,8 +43,8 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
     }
 
     override fun onTimerTick(duration: String) {
-
         ui.voiceLy.tvVoiceTime.text = duration
+        ui.voiceLy.myWaveForm.addAmplitude(record.recorder.maxAmplitude.toFloat())
     }
 
 }

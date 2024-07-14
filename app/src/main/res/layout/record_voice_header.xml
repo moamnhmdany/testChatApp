@@ -35,11 +35,14 @@
             android:contentDescription="@string/play"
             />
         <com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.WaveForm
+            android:id="@+id/my_wave_form"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_voice_time"
             app:layout_constraintStart_toEndOf="@+id/btn_play_voice"

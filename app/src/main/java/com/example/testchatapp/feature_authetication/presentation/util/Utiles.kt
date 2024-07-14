@@ -94,7 +94,7 @@ class Utiles() {
         return  bindingUsersListAdd
     }
 
-    fun settingChatMessangerPage(context: Context,activity: Activity):ActivityChatMessangerPageBinding{
+    fun settingChatMessengerPage(context: Context, activity: Activity):ActivityChatMessangerPageBinding{
         val li = LayoutInflater.from(context)
         bindingChatMessangrePage = inflateChatMessangerPage(li)
         val view = bindingChatMessangrePage.root
