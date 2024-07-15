@@ -9,7 +9,7 @@ class PermissionsHandler(val activity: ChatMessengerActivity) {
 
 
     fun requestPermissions() {
-        if (!UtilsReference.permissonGranted) {
+        if (!UtilsReference.permissionGranted) {
             ActivityCompat.requestPermissions(
                 activity,
                 UtilsReference.permissions,
@@ -19,11 +19,11 @@ class PermissionsHandler(val activity: ChatMessengerActivity) {
     }
 
     fun checkPermission(): Boolean {
-        UtilsReference.permissonGranted = ActivityCompat.checkSelfPermission(
+        UtilsReference.permissionGranted = ActivityCompat.checkSelfPermission(
             activity,
             UtilsReference.permissions[0]
         ) == PackageManager.PERMISSION_GRANTED
-        return UtilsReference.permissonGranted
+        return UtilsReference.permissionGranted
     }
 
 

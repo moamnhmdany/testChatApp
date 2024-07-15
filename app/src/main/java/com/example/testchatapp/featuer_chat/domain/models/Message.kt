@@ -8,5 +8,5 @@ class Message {
     var message = ""
     var messageTime = ""
     var imgUrlMessage = ""
-
+    var soundUri = ""
 }

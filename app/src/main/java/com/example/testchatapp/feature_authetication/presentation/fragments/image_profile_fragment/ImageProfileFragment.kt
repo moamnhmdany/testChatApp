@@ -36,7 +36,6 @@ class ImageProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         // action.checkUser(ui,activity)
         action.goUserListPage(ui,activity)
         action.goUserListPageNextButton(ui, activity,context)
 

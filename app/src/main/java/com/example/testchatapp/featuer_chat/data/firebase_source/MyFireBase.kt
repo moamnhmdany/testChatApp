@@ -1,21 +1,26 @@
 package com.example.testchatapp.featuer_chat.data.firebase_source
 
+import android.net.Uri
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
 import com.example.testchatapp.feature_authetication.domain.model.Users
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.tasks.await
 
 
 class MyFireBase : DataBaseDao {
     private val usersRef = Firebase.database.reference.child("Users")
     private val chatsRef = Firebase.database.reference.child("chats")
+    private  val chatsSoundRef = FirebaseStorage.getInstance().getReference("sound")
 
     private var usersFriendListRef = Firebase.database.reference.child("UserFriends")
 
@@ -68,7 +73,13 @@ class MyFireBase : DataBaseDao {
       }
    }
 
+    override suspend fun uploadSoundRecord(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>){
 
+        chatsSoundRef.child(FirebaseAuth.getInstance().uid.toString()).putFile(uri).addOnSuccessListener(listener)
+    }
 
+    override suspend fun addSoundUri(roomId: String, msgId: String,msg:Message, listener: OnSuccessListener<Any>){
+        chatsRef.child(roomId).child(msgId).setValue(msg.soundUri).addOnSuccessListener(listener)
+    }
 }
 

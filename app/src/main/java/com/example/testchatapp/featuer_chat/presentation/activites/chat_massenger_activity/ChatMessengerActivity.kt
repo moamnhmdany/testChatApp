@@ -13,7 +13,7 @@ import com.example.testchatapp.feature_authetication.presentation.util.Utiles
 class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListener {
     private lateinit var ui : ActivityChatMessangerPageBinding
     private lateinit var record : RecordVoiceHandler
-    private val action = ChatMessangerlistenre()
+    private val action = ChatMessengerlistenre()
     private val setting = Utiles()
     private val  permissionsHandler = PermissionsHandler(this)
     private val timer = CustomsTimer(this)
@@ -30,6 +30,7 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
         action.observeMessageList(intent, this, ui, this)
         action.keyBoardListener(this, ui)
         action.recordListener(record, this, ui, timer,permissionsHandler)
+        action.sendSoundMessage(ui, intent)
 
     }
 
@@ -39,7 +40,7 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    UtilsReference.permissonGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
+    UtilsReference.permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onTimerTick(duration: String) {

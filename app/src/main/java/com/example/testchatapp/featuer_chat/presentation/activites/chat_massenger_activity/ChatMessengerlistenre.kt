@@ -27,7 +27,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class ChatMessangerlistenre {
+class ChatMessengerlistenre {
 
 
     fun observeMessageList(
@@ -113,6 +113,18 @@ class ChatMessangerlistenre {
     }
 
     fun sendMessage(ui: ActivityChatMessangerPageBinding, intent: Intent) {
+        setupUserChatData(intent)
+        ui.btnSendMsg.setOnClickListener {
+            val msg = ui.chatMsgTextBox.text.toString()
+            println("------------------the message is = $msg")
+            setupRoomId(UtilsReference.unFriendUser)
+            setupMessage(msg, UtilsReference.unFriendUser)
+            UtilsReference.chatMessageViewModel.sendMsg()
+            clearText(ui)
+        }
+        println("------------------------> sendMessage is done running")
+    }
+    private fun setupUserChatData(intent: Intent){
         val userData = getIntentData(intent)
         if (userData is UserChatRoom) {
             UtilsReference.unFriendUser.userUnfriendId = userData.id
@@ -122,17 +134,41 @@ class ChatMessangerlistenre {
             val unFriend = getUserUnfriendData(intent)
             UtilsReference.unFriendUser = unFriend
         }
-        val unFriend = UtilsReference.unFriendUser
+    }
+    private fun getIntentData(intent: Intent): Any {
+        val check = intent.getIntExtra("checkClass", 0)
 
-        ui.btnSendMsg.setOnClickListener {
-            val msg = ui.chatMsgTextBox.text.toString()
-            println("------------------the message is = $msg")
-            setupRoomId(unFriend)
-            setupMessage(msg, unFriend)
-            UtilsReference.chatMessageViewModel.sendMsg()
-            clearText(ui)
+        if (check == 1)
+            return getUserRoomData(intent)
+        else
+            return getUserUnfriendData(intent)
+
+    }
+    private fun getUserRoomData(intent: Intent): UserChatRoom {
+
+        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            intent.getParcelableExtra("userRoomMate", UserChatRoom::class.java)
+
+        } else {
+            intent.getParcelableExtra<UserChatRoom>("userRoomMate")
         }
-        println("------------------------> sendMessage is done running")
+        val data = userData!!.userName
+        println("-----------------" + data)
+        println("------------------------> getUserUnfriendData ")
+        return userData
+    }
+    private fun getUserUnfriendData(intent: Intent): UsersUnfriend {
+
+        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            intent.getParcelableExtra("userDataFriend", UsersUnfriend::class.java)
+
+        } else {
+            intent.getParcelableExtra<UsersUnfriend>("userDataFriend")
+        }
+        val data = userData!!.userUnfriendUserName
+        println("-----------------" + data)
+        println("------------------------> getUserUnfriendData ")
+        return userData
     }
 
     private fun clearText(ui: ActivityChatMessangerPageBinding) {
@@ -161,43 +197,10 @@ class ChatMessangerlistenre {
     private fun getTime(): String =
         SimpleDateFormat("hh:mm:ss a", Locale("ar")).format(Date())
 
-    private fun getUserUnfriendData(intent: Intent): UsersUnfriend {
 
-        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            intent.getParcelableExtra("userDataFriend", UsersUnfriend::class.java)
 
-        } else {
-            intent.getParcelableExtra<UsersUnfriend>("userDataFriend")
-        }
-        val data = userData!!.userUnfriendUserName
-        println("-----------------" + data)
-        println("------------------------> getUserUnfriendData ")
-        return userData
-    }
 
-    private fun getUserRoomData(intent: Intent): UserChatRoom {
 
-        val userData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            intent.getParcelableExtra("userRoomMate", UserChatRoom::class.java)
-
-        } else {
-            intent.getParcelableExtra<UserChatRoom>("userRoomMate")
-        }
-        val data = userData!!.userName
-        println("-----------------" + data)
-        println("------------------------> getUserUnfriendData ")
-        return userData
-    }
-
-    private fun getIntentData(intent: Intent): Any {
-        val check = intent.getIntExtra("checkClass", 0)
-
-        if (check == 1)
-            return getUserRoomData(intent)
-        else
-            return getUserUnfriendData(intent)
-
-    }
 
     private fun sort(senderId: String, receiverId: String): String {
         if (senderId.compareTo(receiverId) <= 0) {
@@ -217,7 +220,7 @@ class ChatMessangerlistenre {
         }
     }
 
-    fun openSoundRecord(ui: ActivityChatMessangerPageBinding) {
+    private fun openSoundRecord(ui: ActivityChatMessangerPageBinding) {
 
         ui.lyBottomBar.visibility = View.GONE
         ui.voiceLy.getRoot().visibility = View.VISIBLE
@@ -226,8 +229,8 @@ class ChatMessangerlistenre {
 
     private fun closeSoundRecord(ui: ActivityChatMessangerPageBinding) {
 
-            ui.voiceLy.getRoot().visibility = View.GONE
-            ui.lyBottomBar.visibility = View.VISIBLE
+        ui.voiceLy.getRoot().visibility = View.GONE
+        ui.lyBottomBar.visibility = View.VISIBLE
 
     }
 
@@ -308,9 +311,21 @@ class ChatMessangerlistenre {
             recorder.removeRecorder()
             timer.stop()
             closeSoundRecord(ui)
+            UtilsReference.audioPath = ""
         }
     }
 
+    fun sendSoundMessage(ui: ActivityChatMessangerPageBinding, intent: Intent) {
+        ui.voiceLy.btnSendVoice.setOnClickListener {
+            UtilsReference.chatMessageViewModel.uploadSound() {
+
+                setupUserChatData(intent)
+                setupRoomId(UtilsReference.unFriendUser)
+                setupMessage("soundMessage", UtilsReference.unFriendUser)
+                UtilsReference.chatMessageViewModel.sendMsg()
+            }
+        }
+    }
 
 
 }

@@ -28,16 +28,7 @@ class ProfileFragmnetListener {
         case.uploadImage(UtilsReference.imageUri!!,listener)
     }
 
-    fun checkUser(ui: FragmentImageProfileBinding, activity: FragmentActivity?) {
-        auth = FirebaseAuth.getInstance()
 
-        if (auth.currentUser != null) {
-            ui.tvSkip.setOnClickListener {
-                val intent = Intent(activity, UsersChatRoomListActivity::class.java)
-                activity!!.startActivity(intent)
-            }
-        }
-    }
 
     fun setupImage(ui: FragmentImageProfileBinding, imageProfileFragment: ImageProfileFragment) {
         val pick = pickImage(imageProfileFragment, ui)

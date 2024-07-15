@@ -65,10 +65,11 @@ object UtilsReference {
 
     var permissions = arrayOf(android.Manifest.permission.RECORD_AUDIO)
     const val REQUEST_CODE = 200
-    var permissonGranted = false
+    var permissionGranted = false
     var audioPath = ""
     var fileName = ""
     var isRecorded = false
     var isPaused = false
     lateinit var audioFile : File
+     var soundUri : Uri? = null
 }

@@ -33,16 +33,15 @@ class WaveForm(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     fun addAmplitude(amp: Float){
          normal = Math.min(amp.toInt()/7,screenHeight.toInt()).toFloat()
         amplitued.add(normal)
-
         spikesRectangles.clear()
-       var lastAmps = amplitued.takeLast(maxSpikes)
+       var lastAmps = amplitued.takeLast(maxSpikes) // array list for rect fit in screen only
         for (i :Int in lastAmps.indices ) {
              left = (screenWidth - 670f)  - i*(width + distance)
-             top = (screenHeight/2 + lastAmps[i]/2) // for center Rectangles
+             top = (screenHeight/2 + lastAmps[i]/2) // for center Rectangles divided by 2
              right  = left + width
             bottom  = top + lastAmps[i]   // height of Rectangle
             spikesRectangles.add(RectF(left, top, right, bottom))
-            invalidate()
+            invalidate() // clear or re-render the view
         }
     }
 
