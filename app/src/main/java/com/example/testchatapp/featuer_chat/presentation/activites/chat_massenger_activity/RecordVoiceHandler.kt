@@ -134,5 +134,9 @@ class RecordVoiceHandler(val recorder: MediaRecorder) {
         return curTimeStr
     }
 
-
+  fun stopRecord(){
+      recorder.stop()
+      UtilsReference.isRecorded = false
+      UtilsReference.isPaused = false
+  }
 }

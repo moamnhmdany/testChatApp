@@ -9,16 +9,17 @@ import kotlinx.coroutines.runBlocking
 class UploadSoundCase(private val repo: RepositoryImpl) {
 
 
-    suspend fun uploadSound(listener: OnSuccessListener<Any>) {
+    suspend fun uploadSound(sendMsg: ()->Unit) {
         setupUri()
         if (UtilsReference.soundUri != null) {
 
             repo.uploadSoundRecord(UtilsReference.soundUri!!) { task ->
-
+                println("-------------> done upload sound")
                 task.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
                     runBlocking(Dispatchers.IO) {
                         UtilsReference.msg.soundUri = it.toString()
-                        repo.addSoundUri("", "", UtilsReference.msg, listener)
+                        UtilsReference.msg.message = "sound Message"
+                        sendMsg()
                     }
                 }
             }

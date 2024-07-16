@@ -77,9 +77,7 @@ class ChatMessengerlistenre {
             override fun onDataChange(snapshot: DataSnapshot) {
                 UtilsReference.mutableMessageList.value?.clear()
                 if (snapshot.exists()) {
-
                     updateMessageId(snapshot)
-
                     snapshot.children.forEach {
 
                         println("----------------- the msg id = ${it.key.toString()}")
@@ -315,17 +313,28 @@ class ChatMessengerlistenre {
         }
     }
 
-    fun sendSoundMessage(ui: ActivityChatMessangerPageBinding, intent: Intent) {
+    fun sendSoundMessage(ui: ActivityChatMessangerPageBinding,
+                         intent: Intent,recorder: RecordVoiceHandler,timer: CustomsTimer) {
+
         ui.voiceLy.btnSendVoice.setOnClickListener {
+            stopRecord(recorder, timer, ui)
+            setupUserChatData(intent)
+            setupRoomId(UtilsReference.unFriendUser)
+            setupMessage("soundMessage", UtilsReference.unFriendUser)
+
             UtilsReference.chatMessageViewModel.uploadSound() {
 
-                setupUserChatData(intent)
-                setupRoomId(UtilsReference.unFriendUser)
-                setupMessage("soundMessage", UtilsReference.unFriendUser)
+
                 UtilsReference.chatMessageViewModel.sendMsg()
+                UtilsReference.audioPath = ""
             }
         }
     }
 
+    private fun stopRecord(recorder: RecordVoiceHandler, timer: CustomsTimer, ui: ActivityChatMessangerPageBinding){
+        recorder.stopRecord()
+        timer.stop()
+        closeSoundRecord(ui)
 
+    }
 }

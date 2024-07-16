@@ -30,7 +30,7 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
         action.observeMessageList(intent, this, ui, this)
         action.keyBoardListener(this, ui)
         action.recordListener(record, this, ui, timer,permissionsHandler)
-        action.sendSoundMessage(ui, intent)
+        action.sendSoundMessage(ui, intent, record, timer)
 
     }
 

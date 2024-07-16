@@ -34,9 +34,9 @@ class ChatMessageViewModel() : ViewModel() {
          println("---------------------> done run getMessages in view model")
     }
 
-    fun uploadSound(listener: OnSuccessListener<Any>){
+    fun uploadSound(sendMsg: ()->Unit){
         viewModelScope.launch(Dispatchers.Main) {
-            soundCase.uploadSound(listener)
+            soundCase.uploadSound(sendMsg)
         }
     }
 }

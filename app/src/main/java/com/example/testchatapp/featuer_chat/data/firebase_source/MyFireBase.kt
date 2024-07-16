@@ -74,8 +74,8 @@ class MyFireBase : DataBaseDao {
    }
 
     override suspend fun uploadSoundRecord(uri: Uri, listener: OnSuccessListener<UploadTask.TaskSnapshot>){
-
-        chatsSoundRef.child(FirebaseAuth.getInstance().uid.toString()).putFile(uri).addOnSuccessListener(listener)
+       println("-----------------the audio path in firebase to upload> $uri")
+        chatsSoundRef.child(FirebaseAuth.getInstance().uid.toString()).putFile(Uri.fromFile(UtilsReference.audioFile)).addOnSuccessListener(listener)
     }
 
     override suspend fun addSoundUri(roomId: String, msgId: String,msg:Message, listener: OnSuccessListener<Any>){
