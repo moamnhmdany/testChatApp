@@ -31,6 +31,7 @@ class ChatMessageViewModel() : ViewModel() {
        viewModelScope.launch (Dispatchers.IO){
            UtilsReference.getMessagesCase.getMessages(roomId, listener)
        }
+
          println("---------------------> done run getMessages in view model")
     }
 
@@ -39,4 +40,5 @@ class ChatMessageViewModel() : ViewModel() {
             soundCase.uploadSound(sendMsg)
         }
     }
+
 }

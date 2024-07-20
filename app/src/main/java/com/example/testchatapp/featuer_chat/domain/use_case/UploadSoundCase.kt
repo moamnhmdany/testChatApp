@@ -18,7 +18,7 @@ class UploadSoundCase(private val repo: RepositoryImpl) {
                 task.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
                     runBlocking(Dispatchers.IO) {
                         UtilsReference.msg.soundUri = it.toString()
-                        UtilsReference.msg.message = "sound Message"
+                        UtilsReference.msg.message = "soundMessage"
                         sendMsg()
                     }
                 }

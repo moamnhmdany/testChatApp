@@ -28,7 +28,10 @@ class UsersListAddActivity : AppCompatActivity(), ChatFriend {
 
     override fun onStop() {
         super.onStop()
+        if (UtilsReference.mutableUsersUnFriendsList!=null){
         UtilsReference.mutableUsersUnFriendsList.value!!.clear()
+        }
+
     }
 
     override fun openChat(usersUnfriendData: UsersUnfriend) {

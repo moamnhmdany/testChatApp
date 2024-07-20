@@ -179,6 +179,16 @@ class UserRommListListenre {
         context.startActivity(intent)
     }
 
+    fun restMediaPlayer(){
+        UtilsReference.customMediaPlayer = null
+        UtilsReference.mediaPlayer  = null
+        UtilsReference.isSoundRuning = false
+        UtilsReference.isSoundPause = false
+        UtilsReference.isSoundStop = true
+        UtilsReference.setupMediaPlayerCompleted = false
+
+    }
+
     companion object {
         fun showProgrecceBar(ui: ActivityUsersChatListBinding) {
             ui.usersListProgressBar.visibility = View.VISIBLE
@@ -190,6 +200,8 @@ class UserRommListListenre {
         }
 
     }
+
+
 
 }
 

@@ -2,11 +2,13 @@ package com.example.testchatapp.featuer_chat.presentation.activites.chat_masseng
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testchatapp.R
 import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
@@ -46,6 +48,7 @@ class ChatMessengerlistenre {
 
         ui.chatMessagesRecycleView.layoutManager = layoutManager
         UtilsReference.messageChatAdapter.messegeList = UtilsReference.mutableMessageList
+
         ui.chatMessagesRecycleView.adapter = UtilsReference.messageChatAdapter
 
         val itemCount = (ui.chatMessagesRecycleView.adapter as MessengerAdapter).itemCount
@@ -337,4 +340,10 @@ class ChatMessengerlistenre {
         closeSoundRecord(ui)
 
     }
+
+    fun inililizeMediaPlayer(context: Context){
+        UtilsReference.mediaPlayer = ExoPlayer.Builder(context).build()
+        UtilsReference.customMediaPlayer = MyMediaPlayer(UtilsReference.mediaPlayer!!)
+    }
+
 }

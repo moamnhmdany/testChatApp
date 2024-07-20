@@ -2,6 +2,7 @@ package com.example.testchatapp.featuer_chat.presentation.activites.chat_masseng
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
@@ -18,12 +19,14 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
     private val  permissionsHandler = PermissionsHandler(this)
     private val timer = CustomsTimer(this)
 
+
     @SuppressLint("SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
          ui =  setting.settingChatMessengerPage(this, this)
          record = action.initializeRecorder(this)
+          action.inililizeMediaPlayer(this)
 
         action.goToMain(this, ui)
         action.sendMessage(ui, intent)
@@ -31,6 +34,7 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
         action.keyBoardListener(this, ui)
         action.recordListener(record, this, ui, timer,permissionsHandler)
         action.sendSoundMessage(ui, intent, record, timer)
+
 
     }
 

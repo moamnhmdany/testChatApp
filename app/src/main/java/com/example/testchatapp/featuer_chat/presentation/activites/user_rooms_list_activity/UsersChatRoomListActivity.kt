@@ -29,6 +29,7 @@ class UsersChatRoomListActivity : AppCompatActivity(),UserRoomIntent {
         onBackPressedDispatcher.addCallback(this,actions.onBackPressListener(drawerLayout))
         actions.observeUsers(this,ui,this)
         actions.updateUserImage(navHeader, this)
+        actions.restMediaPlayer()
         UtilsReference.interfaceChatRoom = this@UsersChatRoomListActivity
 
     }

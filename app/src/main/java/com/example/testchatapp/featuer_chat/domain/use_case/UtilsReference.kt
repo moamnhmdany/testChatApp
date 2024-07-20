@@ -1,13 +1,16 @@
 package com.example.testchatapp.featuer_chat.domain.use_case
 
+import android.media.MediaPlayer
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
+import androidx.media3.exoplayer.ExoPlayer
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.example.testchatapp.featuer_chat.domain.models.UserChatRoom
 import com.example.testchatapp.featuer_chat.domain.models.UserChats
 import com.example.testchatapp.featuer_chat.domain.models.UserFriends
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessageViewModel
+import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.MyMediaPlayer
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UserRoomIntent
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.ViewModelUserRoomList
 import com.example.testchatapp.featuer_chat.presentation.activites.users_lists_add_friend.AddFriendModel
@@ -72,4 +75,10 @@ object UtilsReference {
     var isPaused = false
     lateinit var audioFile : File
      var soundUri : Uri? = null
+     var customMediaPlayer: MyMediaPlayer? = null
+     var mediaPlayer: ExoPlayer? = null
+    var isSoundRuning = false
+    var isSoundPause = false
+    var isSoundStop = true
+    var setupMediaPlayerCompleted = false
 }
