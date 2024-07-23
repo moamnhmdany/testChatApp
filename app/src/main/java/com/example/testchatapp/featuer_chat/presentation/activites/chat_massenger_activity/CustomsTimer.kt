@@ -8,6 +8,7 @@ class CustomsTimer(listener: OnTimerTickListener) {
     interface  OnTimerTickListener{
         fun onTimerTick(duration: String)
     }
+
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var runnable: Runnable
     private var duration = 0L

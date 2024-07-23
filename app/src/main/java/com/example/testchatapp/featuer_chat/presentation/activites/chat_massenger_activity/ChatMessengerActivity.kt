@@ -26,6 +26,7 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
         super.onCreate(savedInstanceState)
          ui =  setting.settingChatMessengerPage(this, this)
          record = action.initializeRecorder(this)
+          UtilsReference.myTimer = timer
           action.inililizeMediaPlayer(this)
 
         action.goToMain(this, ui)
@@ -49,6 +50,7 @@ class ChatMessengerActivity : AppCompatActivity(),CustomsTimer.OnTimerTickListen
 
     override fun onTimerTick(duration: String) {
         ui.voiceLy.tvVoiceTime.text = duration
+        ui.chatMessagesRecycleView.adapter
         ui.voiceLy.myWaveForm.addAmplitude(record.recorder.maxAmplitude.toFloat())
     }
 

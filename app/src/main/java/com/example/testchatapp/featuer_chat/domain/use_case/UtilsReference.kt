@@ -10,6 +10,7 @@ import com.example.testchatapp.featuer_chat.domain.models.UserChats
 import com.example.testchatapp.featuer_chat.domain.models.UserFriends
 import com.example.testchatapp.featuer_chat.domain.models.UsersUnfriend
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.ChatMessageViewModel
+import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.CustomsTimer
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.MyMediaPlayer
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.UserRoomIntent
 import com.example.testchatapp.featuer_chat.presentation.activites.user_rooms_list_activity.ViewModelUserRoomList
@@ -81,4 +82,5 @@ object UtilsReference {
     var isSoundPause = false
     var isSoundStop = true
     var setupMediaPlayerCompleted = false
+    lateinit var myTimer: CustomsTimer
 }

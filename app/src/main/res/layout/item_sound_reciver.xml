@@ -27,10 +27,20 @@
             />
         <com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.WaveForm
             android:id="@+id/play_wave_form_receiver"
-            android:layout_width="match_parent"
+            android:layout_width="270dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_voice_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/time_voice"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:gravity="center"
             />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

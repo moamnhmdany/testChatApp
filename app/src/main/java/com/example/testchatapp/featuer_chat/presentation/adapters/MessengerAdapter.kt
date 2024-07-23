@@ -6,6 +6,7 @@ import android.widget.Adapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testchatapp.R
+import com.example.testchatapp.databinding.ActivityChatMessangerPageBinding
 import com.example.testchatapp.databinding.ItemReciverBinding
 import com.example.testchatapp.databinding.ItemReciverBinding.inflate as reciverInflate
 
@@ -19,12 +20,16 @@ import com.example.testchatapp.databinding.ItemSoundReciverBinding.inflate as re
 
 import com.example.testchatapp.featuer_chat.domain.models.Message
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
+import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.CustomsTimer
 import com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.MyMediaPlayer
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
-class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+class MessengerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() ,
+    CustomsTimer.OnTimerTickListener {
+    private  var timerSenderSoundHolder: SenderSoundViewHolder? = null
+    private  var receiverSoundHolder: ReceiverSoundViewHolder? = null
+    private val adapterTimer = CustomsTimer(this)
     private val SENDER_TYPE = 1
     private val RECEIVER_TYPE = 2
     private val SENDER_SOUND_TYPE = 3
@@ -107,7 +112,7 @@ class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         println("------------> onBindViewHolder run again")
-
+        UtilsReference.myTimer = adapterTimer
         with(messegeList.value!![position]) {
             when (holder) {
 
@@ -124,54 +129,50 @@ class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
 
                 is SenderSoundViewHolder -> {
-                    val senderSoundHolder = holder as SenderSoundViewHolder
+                    val  senderSoundHolder = holder as SenderSoundViewHolder
+
 
                     senderSoundHolder.senderSoundView.btnSend.setOnClickListener {
-
+                        timerSenderSoundHolder = senderSoundHolder
                                  if(currentSoundUri != soundUri){
                                      currentSoundUri = soundUri
-
+                                     UtilsReference.myTimer.stop()
                                      UtilsReference.customMediaPlayer!!.setupMediaPlayer(soundUri)
                                      setupMediaPlayerListener(){
-                                         senderSoundHolder.senderSoundView.btnSend
+                                         UtilsReference.myTimer.stop()
+                                         senderSoundHolder!!.senderSoundView.btnSend
                                              .setBackgroundResource(R.drawable.play_icon)
                                      }
-
                           }
                         if (UtilsReference.isSoundRuning)
                         {
-                            senderSoundHolder.senderSoundView.btnSend.setBackgroundResource(
+                            senderSoundHolder!!.senderSoundView.btnSend.setBackgroundResource(
                                 R.drawable.play_icon)
                             println("------------uri= $soundUri")
+                            UtilsReference.myTimer.pause()
                             UtilsReference.customMediaPlayer!!.pauseSound()
                         }
 
                         else if (UtilsReference.isSoundPause){
-                            senderSoundHolder.senderSoundView.btnSend.setBackgroundResource(
+                            senderSoundHolder!!.senderSoundView.btnSend.setBackgroundResource(
                                 R.drawable.pause_icon)
+                            UtilsReference.myTimer.start()
                             UtilsReference.customMediaPlayer!!.resumeSound()
                         }
 
                         else if(UtilsReference.isSoundStop){
-                            with(messegeList.value!![position]){
-                                if (soundUri != ""){
-                                    if (currentSoundUri !=soundUri){
-                                        senderSoundHolder.senderSoundView.btnSend.setBackgroundResource(
-                                            R.drawable.play_icon)
-                                    }
-                                }
-                            }
 
-                            senderSoundHolder.senderSoundView.btnSend.setBackgroundResource(
+                            senderSoundHolder!!.senderSoundView.btnSend.setBackgroundResource(
                                 R.drawable.pause_icon)
+                           UtilsReference.myTimer.start()
                            UtilsReference.customMediaPlayer!!.startRunSound()
                        }
                     }
                 }
 
                 else -> {
-                    val receiverSoundHolder = holder as ReceiverSoundViewHolder
-                    receiverSoundHolder.receiverSoundView.btnReceiver.setOnClickListener {
+                     receiverSoundHolder = holder as ReceiverSoundViewHolder
+                    receiverSoundHolder!!.receiverSoundView.btnReceiver.setOnClickListener {
 
                     }
                 }
@@ -189,6 +190,11 @@ class MessengerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private fun setupMediaPlayerListener(onCompleteListener: ()->Unit) {
             UtilsReference.customMediaPlayer!!.onCompleteListener( onCompleteListener )
     }
+
+    override fun onTimerTick(duration: String) {
+        timerSenderSoundHolder!!.senderSoundView.tvVoiceTime.text = duration
+    }
+
 
 
 

@@ -104,9 +104,11 @@ class MyMediaPlayer( val mediaPlayer: ExoPlayer)  {
 
                         if (!isPlaying){
                          onCompleteListener()
+
                         }
                        println("play is changed ------>")
                    }
+
                    override fun onPlaybackStateChanged(playbackState: Int) {
 
                        super.onPlaybackStateChanged(playbackState)
