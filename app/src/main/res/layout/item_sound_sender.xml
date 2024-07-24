@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/ly_root_sender"
@@ -27,13 +28,22 @@
             android:background="@drawable/play_icon"
             android:layout_gravity="start|center"
             />
-          <com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity.WaveForm
-              android:id="@+id/play_wave_form__sender"
-              android:layout_width="200dp"
-              android:layout_height="50dp"
-              android:layout_gravity="center"
-              android:layout_margin="10dp"
-              />
+                <com.masoudss.lib.WaveformSeekBar
+                    android:id="@+id/waveformSeekBar"
+                    android:layout_width="160dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    app:wave_background_color="@color/white"
+                    app:wave_corner_radius="2dp"
+                    app:wave_gap="2dp"
+                    app:wave_gravity="center"
+                    app:wave_max_progress="100"
+                    app:wave_min_height="5dp"
+
+                    app:wave_progress="0"
+                    app:wave_progress_color="@color/blue"
+                    app:wave_width="5dp" />
+
         <TextView
             android:id="@+id/tv_voice_time"
             android:layout_width="wrap_content"

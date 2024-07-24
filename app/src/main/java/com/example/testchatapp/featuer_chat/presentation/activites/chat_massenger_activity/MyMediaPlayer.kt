@@ -1,13 +1,9 @@
 package com.example.testchatapp.featuer_chat.presentation.activites.chat_massenger_activity
 
 import androidx.media3.common.MediaItem
-import androidx.media3.common.MediaMetadata
-import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import com.example.testchatapp.featuer_chat.domain.use_case.UtilsReference
-import com.example.testchatapp.featuer_chat.presentation.adapters.MessengerAdapter
-import com.google.android.gms.tasks.OnCompleteListener
 
 
 class MyMediaPlayer( val mediaPlayer: ExoPlayer)  {
@@ -94,7 +90,7 @@ class MyMediaPlayer( val mediaPlayer: ExoPlayer)  {
              }
 
     }
-    fun onCompleteListener(onCompleteListener: ()-> Unit){
+    fun onCompleteListener(onCompleteListener: ()-> Unit,onPause:()->Unit){
 
                mediaPlayer.addListener(object : Player.Listener {
 
@@ -102,11 +98,11 @@ class MyMediaPlayer( val mediaPlayer: ExoPlayer)  {
                    override fun onIsPlayingChanged(isPlaying: Boolean) {
                        super.onIsPlayingChanged(isPlaying)
 
-                        if (!isPlaying){
-                         onCompleteListener()
-
+                        if (!mediaPlayer.isPlaying){
+                         onPause()
+                            println("play is changed --isPlaying---->")
                         }
-                       println("play is changed ------>")
+
                    }
 
                    override fun onPlaybackStateChanged(playbackState: Int) {
@@ -119,7 +115,7 @@ class MyMediaPlayer( val mediaPlayer: ExoPlayer)  {
                                UtilsReference.isSoundPause  = false
                                stopRunSound()
                                onCompleteListener()
-                               println("-------------------complete sound stop")
+                               println("-----STATE_IDLE--------------complete sound stop")
 
                            }
 
@@ -133,7 +129,7 @@ class MyMediaPlayer( val mediaPlayer: ExoPlayer)  {
                                UtilsReference.isSoundPause  = false
 
                                onCompleteListener()
-                               println("-------------------complete sound stop")
+                               println("-------STATE_ENDED------------complete sound stop")
                            }
 
                            Player.STATE_READY -> {

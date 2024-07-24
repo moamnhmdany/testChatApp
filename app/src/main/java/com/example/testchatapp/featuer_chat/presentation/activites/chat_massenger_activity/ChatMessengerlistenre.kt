@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import linc.com.amplituda.Amplituda
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import java.text.SimpleDateFormat
@@ -343,6 +344,7 @@ class ChatMessengerlistenre {
 
     fun inililizeMediaPlayer(context: Context){
         UtilsReference.mediaPlayer = ExoPlayer.Builder(context).build()
+        UtilsReference.myAmplituda = Amplituda(context)
         UtilsReference.customMediaPlayer = MyMediaPlayer(UtilsReference.mediaPlayer!!)
     }
 

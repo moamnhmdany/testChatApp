@@ -20,6 +20,7 @@ import com.example.testchatapp.featuer_chat.presentation.adapters.AddFriendAdapt
 import com.example.testchatapp.featuer_chat.presentation.adapters.MessengerAdapter
 import com.example.testchatapp.featuer_chat.presentation.adapters.UserRoomChatListAdapter
 import com.example.testchatapp.feature_authetication.domain.model.Users
+import linc.com.amplituda.Amplituda
 import java.io.File
 
 object UtilsReference {
@@ -83,4 +84,5 @@ object UtilsReference {
     var isSoundStop = true
     var setupMediaPlayerCompleted = false
     lateinit var myTimer: CustomsTimer
+    var myAmplituda : Amplituda? = null
 }

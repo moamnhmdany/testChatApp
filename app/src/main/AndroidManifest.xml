@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestChatApp"
         android:windowSoftInputMode="adjustPan"
-        tools:targetApi="34">
+        tools:targetApi="34"
+        android:extractNativeLibs="false"
+        >
         <activity
             android:name=".featuer_chat.presentation.activites.profile_activity.ProfileActivity"
             android:exported="true"
